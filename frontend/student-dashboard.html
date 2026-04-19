@@ -1007,11 +1007,7 @@ if (!/[0-9]/.test(newPassword)) {
           </div>
         </div>
       `;
-      const size = material.file_size
-  ? material.file_size > 1024 * 1024
-    ? (material.file_size / (1024 * 1024)).toFixed(1) + " MB"
-    : (material.file_size / 1024).toFixed(1) + " KB"
-  : "—";
+    
 
             materials.forEach((material) => {
               const date = new Date(material.uploaded_at).toLocaleDateString(
@@ -1021,7 +1017,16 @@ if (!/[0-9]/.test(newPassword)) {
                   month: "short",
                   year: "numeric",
                 },
+
+                
               );
+
+              const size = material.file_size
+  ? material.file_size > 1024 * 1024
+    ? (material.file_size / (1024 * 1024)).toFixed(1) + " MB"
+    : (material.file_size / 1024).toFixed(1) + " KB"
+  : "—";
+
               materialsBody.innerHTML += `
           <tr>
             <td>
@@ -1082,6 +1087,7 @@ if (!/[0-9]/.test(newPassword)) {
           );
         }
       }
+
 
       // ── Course Filter Tabs ────────────────────────────────
       function bindTabs() {
