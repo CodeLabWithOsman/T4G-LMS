@@ -1081,6 +1081,7 @@ if (!/[0-9]/.test(newPassword)) {
           bindTabs();
         } catch (error) {
           console.error("Error loading courses:", error);
+          console.error("Full error:", error.message, error.stack); 
           showToast(
             "Could not load your courses. Please refresh the page.",
             "error",
