@@ -463,6 +463,7 @@ function logout() {
         navLinks.classList.add("active");
         navOverlay.classList.add("active");
         document.body.style.overflow = "hidden";
+         document.documentElement.style.overflow = "hidden"; 
       }
 
       function closeNav() {
@@ -470,6 +471,7 @@ function logout() {
         navLinks.classList.remove("active");
         navOverlay.classList.remove("active");
         document.body.style.overflow = "";
+        document.documentElement.style.overflow = ""; 
       }
 
       navToggle.addEventListener("click", () => {

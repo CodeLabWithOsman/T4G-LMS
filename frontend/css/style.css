@@ -3406,3 +3406,17 @@ nav-overlay {
     pointer-events: all !important;
   }
 }
+@media (max-width: 768px) {
+  .navbar-links {
+    width: min(260px, 78vw) !important;
+  }
+
+  .sidebar-brand img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .sidebar-brand span {
+    font-size: 0.9rem !important;
+  }
+}
