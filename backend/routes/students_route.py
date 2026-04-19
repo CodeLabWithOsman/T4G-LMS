@@ -16,8 +16,6 @@ from pydantic import EmailStr
 from auth import verify_password, create_access_token
 
 
-
-
 router = APIRouter(prefix="/students", tags=["Students"])
 
 
@@ -35,25 +33,9 @@ def search_students_route(
     return results
 
 
-@router.get("/{student_id}", response_model=StudentResponse)
-def read_student(student_id: str, db: Session = Depends(get_db)):
-    student = get_student_by_id(db, student_id)
-    if not student:
-        raise HTTPException(status_code=404, detail="Student not found")
-    return student
-
-
 @router.post("/", response_model=StudentResponse)
 def add_student(student: StudentCreate, db: Session = Depends(get_db)):
     return create_student(db, student)
-
-
-@router.delete("/{student_id}")
-def remove_student(student_id: str, db: Session = Depends(get_db)):
-    student = delete_student(db, student_id)
-    if not student:
-        raise HTTPException(status_code=404, detail="Student not found")
-    return {"message": "Student deleted successfully"}
 
 
 @router.post("/login")
@@ -118,6 +100,21 @@ def reset_password(data: ResetPassword, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Password reset successfully"}
 
+
+@router.get("/{student_id}", response_model=StudentResponse)
+def read_student(student_id: str, db: Session = Depends(get_db)):
+    student = get_student_by_id(db, student_id)
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return student
+
+
+@router.delete("/{student_id}")
+def remove_student(student_id: str, db: Session = Depends(get_db)):
+    student = delete_student(db, student_id)
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return {"message": "Student deleted successfully"}
 
 
 
