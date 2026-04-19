@@ -3591,3 +3591,31 @@ nav-overlay {
 .sidebar-footer {
   margin-top: 16px;
 }
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 16px;
+    align-items: flex-end;
+  }
+
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal form input,
+  .modal form select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
