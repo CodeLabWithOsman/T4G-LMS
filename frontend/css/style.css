@@ -3637,3 +3637,36 @@ nav-overlay {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+@media (max-width: 768px) {
+  .navbar-links {
+    width: 75vw !important;
+    max-width: 300px !important;
+    right: 0 !important;
+    left: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .navbar-links li a,
+  .sidebar-logout-btn {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-overlay {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(3, 4, 94, 0.45) !important;
+    z-index: 1099 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.35s ease !important;
+  }
+
+  .nav-overlay.active {
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
+}
