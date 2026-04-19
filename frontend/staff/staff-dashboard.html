@@ -794,50 +794,51 @@
           btn.textContent = "Uploading...";
           btn.disabled = true;
 
-          try {
-            // Convert file to base64
-            const reader = new FileReader();
-            reader.onload = async function (event) {
-              const base64 = event.target.result.split(",")[1];
-
-              const body = {
-                course_id: courseId,
-                title: title,
-                description: description || null,
-                file_name: selectedFile.name,
-                file_data: base64,
-              };
-
-              const res = await fetch(`${BASE_URL}/materials/`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(body),
-              });
-
-              if (res.ok) {
-                alert(`"${selectedFile.name}" uploaded successfully! ✅`);
-                clearFile();
-                document.getElementById("upload-form").reset();
-                loadCourses();
-              } else {
-                const data = await res.json();
-                alert(data.detail || "Failed to upload material");
-              }
-
-              btn.textContent = "Upload Material";
-              btn.disabled = false;
-            };
-            reader.readAsDataURL(selectedFile);
-          } catch (error) {
-            console.error("Upload error:", error);
-            alert("Upload failed. Please try again.");
-            btn.textContent = "Upload Material";
-            btn.disabled = false;
-          }
-        });
+      try {
+  const reader = new FileReader();
+  reader.onload = async function (event) {
+    try {
+      const base64 = event.target.result.split(",")[1];
+      const body = {
+        course_id: courseId,
+        title: title,
+        description: description || null,
+        file_name: selectedFile.name,
+        file_data: base64,
+      };
+      const res = await fetch(`${BASE_URL}/materials/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) {
+        alert(`"${selectedFile.name}" uploaded successfully! ✅`);
+        clearFile();
+        document.getElementById("upload-form").reset();
+        loadCourses();
+      } else {
+        const data = await res.json();
+        alert(data.detail || "Failed to upload material");
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Upload failed: " + error.message);
+    } finally {
+      btn.textContent = "Upload Material";
+      btn.disabled = false;
+    }
+  };
+  reader.readAsDataURL(selectedFile);
+} catch (error) {
+  console.error("Upload error:", error);
+  alert("Upload failed. Please try again.");
+  btn.textContent = "Upload Material";
+  btn.disabled = false;
+}
+          }); 
 
       loadCourses();
 
