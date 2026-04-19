@@ -720,7 +720,6 @@
   line-height: 1.6;
   margin-bottom: 16px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1118,5 +1117,18 @@
 
   .filter-select {
     width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-links {
+    width: 280px !important;
+    max-width: 85vw !important;
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  .nav-overlay {
+    width: 100vw !important;
+    height: 100vh !important;
   }
 }
