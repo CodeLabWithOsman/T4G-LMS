@@ -35,6 +35,18 @@ def download_material(material_id: str, db: Session = Depends(get_db)):
         media_type="application/pdf",
         headers={"Content-Disposition": f"attachment; filename={material.file_name}"}
     )
+    
+@router.get("/preview/{material_id}")
+def preview_material(material_id: str, db: Session = Depends(get_db)):
+    material = get_material_by_id(db, material_id)
+    if not material:
+        raise HTTPException(status_code=404, detail="Material not found")
+    file_bytes = base64.b64decode(material.file_data)
+    return Response(
+        content=file_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f"inline; filename={material.file_name}"}
+    )
 
 
 @router.delete("/{material_id}")
