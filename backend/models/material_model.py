@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, ForeignKey, DateTime
-from sqlalchemy import Text
+from sqlalchemy import Text, Integer
 from database import Base
 import uuid
 from datetime import datetime
@@ -14,4 +14,5 @@ class Material(Base):
     description = Column(String(500), nullable=True)
     file_name = Column(String(200), nullable=False)
     file_data = Column(Text, nullable=False)
+    file_size = Column(Integer, nullable=True)
     uploaded_at = Column(DateTime, default=datetime.utcnow)

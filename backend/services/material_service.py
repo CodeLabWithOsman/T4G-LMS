@@ -12,12 +12,15 @@ def get_material_by_id(db: Session, material_id: str):
 
 
 def create_material(db: Session, material: MaterialCreate):
+    import base64
+    file_size = len(base64.b64decode(material.file_data))
     db_material = Material(
         course_id=material.course_id,
         title=material.title,
         description=material.description,
         file_name=material.file_name,
-        file_data=material.file_data
+        file_data=material.file_data,
+        file_size=file_size
     )
     db.add(db_material)
     db.commit()

@@ -17,6 +17,7 @@ class MaterialResponse(BaseModel):
     title: str
     description: Optional[str] = None
     file_name: str
+    file_size: Optional[int] = None
     uploaded_at: datetime
 
     class Config:
