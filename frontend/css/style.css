@@ -3423,6 +3423,9 @@ nav-overlay {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  box-sizing: border-box;
+    overflow: hidden;
+  
 }
 
 .modal-overlay.active {
@@ -3618,4 +3621,8 @@ nav-overlay {
     width: 100%;
     box-sizing: border-box;
   }
+}
+.modal {
+  box-sizing: border-box;
+  max-width: min(560px, calc(100vw - 32px));
 }
