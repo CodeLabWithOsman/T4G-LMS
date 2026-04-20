@@ -1400,9 +1400,13 @@ body {
   font-size: 0.875rem;
 }
 /* Mobile notification dropdown fix */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .notif-dropdown {
-    width: calc(100vw - 32px);
-    right: -8px;
+    width: 260px;
+    right: -50px;
+  }
+
+  .notif-list {
+    max-height: 200px;
   }
 }
