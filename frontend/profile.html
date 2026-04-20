@@ -549,7 +549,7 @@
 
     <nav class="navbar" id="navbar">
       <div class="navbar-inner">
-        <a href="index.html" class="navbar-logo" id="logo-link">
+        <a href="student-dashboard.html" class="navbar-logo" id="logo-link">
           <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
           <span class="logo-text">Tech4Girls</span>
         </a>
@@ -562,7 +562,7 @@
 
           <li class="sidebar-section-label">Menu</li>
           <li>
-            <a href="index" id="nav-home">
+            <a href="student-dashboard.html" id="nav-home">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
@@ -571,7 +571,7 @@
             </a>
           </li>
           <li>
-            <a href="student-dashboard.html#courses" id="nav-courses">
+            <a href="student-dashboard.html#my-courses" id="nav-courses">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
@@ -580,7 +580,7 @@
             </a>
           </li>
           <li>
-            <a href="dashboard.html#recent-materials" id="nav-materials">
+            <a href="student-dashboard.html#recent-materials" id="nav-materials">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
@@ -604,7 +604,6 @@
           </li>
 
           <li class="sidebar-divider"></li>
-          </li>
         </ul>
 
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -954,252 +953,261 @@
     </footer>
 
    
-  <script src="js/session.js"></script>
+<script src="js/session.js"></script>
 <script>
-  
-  
+  // BASE_URL is declared in session.js — do not redeclare
   Session.requireAuth();
   const token = Session.getToken();
-  const studentUser = Session.getUser();
+  let studentUser = Session.getUser();
 
-      // Auth Guard
-      if (!token || !studentUser) {
-        window.location.href = "login.html";
-      }
+  // ── Populate UI
+  function populate() {
+    // Always read fresh from session in case it was updated
+    studentUser = Session.getUser();
+    const fullName = `${studentUser.first_name} ${studentUser.last_name}`;
+    const initials = `${studentUser.first_name[0]}${studentUser.last_name[0]}`.toUpperCase();
 
-      // ── Populate UI ──────────────────────────────────────
-      function populate() {
-        const fullName = `${studentUser.first_name} ${studentUser.last_name}`;
-        const initials = `${studentUser.first_name[0]}${studentUser.last_name[0]}`.toUpperCase();
+    document.getElementById("profile-avatar-initials").textContent = initials;
+    document.getElementById("profile-full-name").textContent = fullName;
+    document.getElementById("profile-email-display").textContent = studentUser.email;
+    document.getElementById("profile-track-badge").textContent = `${studentUser.track} Track`;
+    document.getElementById("info-track").textContent = studentUser.track;
+    document.getElementById("info-id").textContent = `#${studentUser.id}`;
 
-        document.getElementById("profile-avatar-initials").textContent = initials;
-        document.getElementById("profile-full-name").textContent = fullName;
-        document.getElementById("profile-email-display").textContent = studentUser.email;
-        document.getElementById("profile-track-badge").textContent = `${studentUser.track} Track`;
-        document.getElementById("info-track").textContent = studentUser.track;
-       document.getElementById("info-id").textContent = studentUser.student_id;
+    document.getElementById("field-firstname").value = studentUser.first_name;
+    document.getElementById("field-lastname").value = studentUser.last_name;
+    document.getElementById("field-email").value = studentUser.email;
 
-        // Form fields
-        document.getElementById("field-firstname").value = studentUser.first_name;
-        document.getElementById("field-lastname").value = studentUser.last_name;
-        document.getElementById("field-email").value = studentUser.email;
+    document.getElementById("acct-name").textContent = fullName;
+    document.getElementById("acct-email").textContent = studentUser.email;
+    document.getElementById("acct-track").textContent = studentUser.track;
+  }
 
-        // Account tab
-        document.getElementById("acct-name").textContent = fullName;
-        document.getElementById("acct-email").textContent = studentUser.email;
-        document.getElementById("acct-track").textContent = studentUser.track;
-      }
+  populate();
 
-      populate();
+  // ── Toast
+  function showToast(message, type = "info") {
+    const existing = document.getElementById("toast");
+    if (existing) existing.remove();
+    const colors = {
+      success: { bg: "#f0fdf4", border: "#86efac", text: "#16a34a" },
+      error:   { bg: "#fef2f2", border: "#fca5a5", text: "#dc2626" },
+      info:    { bg: "#eff6ff", border: "#93c5fd", text: "#1d4ed8" },
+      warning: { bg: "#fff3cd", border: "#f0ad4e", text: "#856404" },
+    };
+    const c = colors[type] || colors.info;
+    const toast = document.createElement("div");
+    toast.id = "toast";
+    toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn .3s ease;`;
+    toast.innerHTML = `<span>${message}</span>`;
+    document.body.appendChild(toast);
+    if (!document.getElementById("toast-style")) {
+      const s = document.createElement("style");
+      s.id = "toast-style";
+      s.textContent = `@keyframes toastSlideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}`;
+      document.head.appendChild(s);
+    }
+    setTimeout(() => toast.remove(), 4000);
+  }
 
-      // ── Toast ────────────────────────────────────────────
-      function showToast(message, type = "info") {
-        const existing = document.getElementById("toast");
-        if (existing) existing.remove();
-        const colors = {
-          success: { bg: "#f0fdf4", border: "#86efac", text: "#16a34a" },
-          error:   { bg: "#fef2f2", border: "#fca5a5", text: "#dc2626" },
-          info:    { bg: "#eff6ff", border: "#93c5fd", text: "#1d4ed8" },
-          warning: { bg: "#fff3cd", border: "#f0ad4e", text: "#856404" },
-        };
-        const c = colors[type] || colors.info;
-        const toast = document.createElement("div");
-        toast.id = "toast";
-        toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn .3s ease;`;
-        toast.innerHTML = `<span>${message}</span>`;
-        document.body.appendChild(toast);
-        if (!document.getElementById("toast-style")) {
-          const s = document.createElement("style");
-          s.id = "toast-style";
-          s.textContent = `@keyframes toastSlideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}`;
-          document.head.appendChild(s);
-        }
-        setTimeout(() => toast.remove(), 4000);
-      }
+  // ── Tabs
+  function switchTab(name) {
+    document.querySelectorAll(".profile-tab").forEach(t => {
+      t.classList.toggle("active", t.dataset.tab === name);
+    });
+    document.querySelectorAll(".profile-panel").forEach(p => {
+      p.classList.toggle("active", p.id === `tab-${name}`);
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
-      // ── Tabs ─────────────────────────────────────────────
-      function switchTab(name) {
-        document.querySelectorAll(".profile-tab").forEach(t => {
-          t.classList.toggle("active", t.dataset.tab === name);
-        });
-        document.querySelectorAll(".profile-panel").forEach(p => {
-          p.classList.toggle("active", p.id === `tab-${name}`);
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+  document.querySelectorAll(".profile-tab").forEach(tab => {
+    tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+  });
 
-      document.querySelectorAll(".profile-tab").forEach(tab => {
-        tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+  // ── Navbar
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 10);
+  });
+
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("navbar-links");
+  const navOverlay = document.getElementById("nav-overlay");
+
+  function openNav() {
+    navToggle.classList.add("active");
+    navLinks.classList.add("active");
+    navOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeNav() {
+    navToggle.classList.remove("active");
+    navLinks.classList.remove("active");
+    navOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  navToggle.addEventListener("click", () =>
+    navLinks.classList.contains("active") ? closeNav() : openNav()
+  );
+  navOverlay.addEventListener("click", closeNav);
+
+  // Close sidebar when any nav link is clicked
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeNav);
+  });
+
+  // ── Logout Modal
+  const logoutModal = document.getElementById("logout-modal");
+  function openLogoutModal() { logoutModal.classList.add("open"); document.body.style.overflow = "hidden"; }
+  function closeLogoutModal() { logoutModal.classList.remove("open"); document.body.style.overflow = ""; }
+
+  document.getElementById("account-logout-btn").addEventListener("click", openLogoutModal);
+  document.getElementById("logout-confirm").addEventListener("click", () => Session.logout());
+  document.getElementById("logout-cancel").addEventListener("click", closeLogoutModal);
+  logoutModal.addEventListener("click", e => { if (e.target === logoutModal) closeLogoutModal(); });
+
+  // ── Toggle Password Visibility
+  function togglePwd(id, btn) {
+    const input = document.getElementById(id);
+    const isText = input.type === "text";
+    input.type = isText ? "password" : "text";
+    btn.innerHTML = isText
+      ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
+      : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+  }
+
+  // ── Password Strength
+  function checkStrength(val) {
+    const segs = ["seg1","seg2","seg3","seg4"].map(id => document.getElementById(id));
+    const label = document.getElementById("strength-label");
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const colors = ["#ef4444","#f97316","#eab308","#22c55e"];
+    const labels = ["Weak","Fair","Good","Strong"];
+    segs.forEach((s, i) => { s.style.background = i < score ? colors[score - 1] : "#e5e7eb"; });
+    label.textContent = score === 0 ? "Enter a password" : labels[score - 1];
+    label.style.color = score === 0 ? "#9ca3af" : colors[score - 1];
+
+    updateRule("rule-length-icon", val.length >= 8);
+    updateRule("rule-upper-icon", /[A-Z]/.test(val));
+    updateRule("rule-number-icon", /[0-9]/.test(val));
+    updateRule("rule-default-icon", val !== "temp1234" && val.length > 0);
+  }
+
+  function updateRule(id, pass) {
+    const el = document.getElementById(id);
+    el.textContent = pass ? "✓" : "✗";
+    el.style.background = pass ? "#dcfce7" : "#e5e7eb";
+    el.style.color = pass ? "#16a34a" : "#9ca3af";
+  }
+
+  function clearStrength() {
+    ["seg1","seg2","seg3","seg4"].forEach(id => document.getElementById(id).style.background = "#e5e7eb");
+    document.getElementById("strength-label").textContent = "Enter a password";
+    document.getElementById("strength-label").style.color = "#9ca3af";
+    ["rule-length-icon","rule-upper-icon","rule-number-icon","rule-default-icon"].forEach(id => updateRule(id, false));
+  }
+
+  // ── Personal Info Form
+  document.getElementById("profile-info-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById("save-info-btn");
+    const firstName = document.getElementById("field-firstname").value.trim();
+    const lastName = document.getElementById("field-lastname").value.trim();
+
+    if (!firstName || !lastName) {
+      showToast("Please fill in both first and last name.", "warning");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+
+    try {
+      const res = await fetch(`${BASE_URL}/students/${studentUser.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ first_name: firstName, last_name: lastName }),
       });
 
-      // ── Navbar ───────────────────────────────────────────
-      const navbar = document.getElementById("navbar");
-      window.addEventListener("scroll", () => {
-        navbar.classList.toggle("scrolled", window.scrollY > 10);
+      if (res.ok) {
+        Session.updateUser({ first_name: firstName, last_name: lastName });
+        populate();
+        showToast("Profile updated successfully!", "success");
+      } else {
+        const data = await res.json();
+        showToast(data.detail || "Failed to update profile.", "error");
+      }
+    } catch {
+      showToast("Service unavailable. Please try again later.", "error");
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+    }
+  });
+
+  // Cancel restores from live session (not stale closure variable)
+  document.getElementById("cancel-info-btn").addEventListener("click", () => {
+    const fresh = Session.getUser();
+    document.getElementById("field-firstname").value = fresh.first_name;
+    document.getElementById("field-lastname").value = fresh.last_name;
+  });
+
+  // ── Security Form
+  document.getElementById("security-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const errEl = document.getElementById("security-error");
+    errEl.style.display = "none";
+
+    const current = document.getElementById("sec-current").value;
+    const newPwd = document.getElementById("sec-new").value;
+    const confirm = document.getElementById("sec-confirm").value;
+    const btn = document.getElementById("save-security-btn");
+
+    const showErr = (msg) => { errEl.textContent = msg; errEl.style.display = "flex"; };
+
+    if (newPwd !== confirm) return showErr("New passwords do not match.");
+    if (newPwd.length < 8) return showErr("Password must be at least 8 characters.");
+    if (!/[A-Z]/.test(newPwd)) return showErr("Password must contain at least one uppercase letter.");
+    if (!/[0-9]/.test(newPwd)) return showErr("Password must contain at least one number.");
+    if (newPwd === "temp1234") return showErr("Please choose a different password from the default one.");
+
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+
+    try {
+      const res = await fetch(`${BASE_URL}/students/change-password`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ current_password: current, new_password: newPwd }),
       });
 
-      const navToggle = document.getElementById("nav-toggle");
-      const navLinks = document.getElementById("navbar-links");
-      const navOverlay = document.getElementById("nav-overlay");
-
-      function openNav() { navToggle.classList.add("active"); navLinks.classList.add("active"); navOverlay.classList.add("active"); document.body.style.overflow = "hidden"; }
-      function closeNav() { navToggle.classList.remove("active"); navLinks.classList.remove("active"); navOverlay.classList.remove("active"); document.body.style.overflow = ""; }
-
-      navToggle.addEventListener("click", () => navLinks.classList.contains("active") ? closeNav() : openNav());
-      navOverlay.addEventListener("click", closeNav);
-     
-
-     
-      const logoutModal = document.getElementById("logout-modal");
-      function openLogoutModal() { logoutModal.classList.add("open"); document.body.style.overflow = "hidden"; }
-      function closeLogoutModal() { logoutModal.classList.remove("open"); document.body.style.overflow = ""; }
-
-      
-      document.getElementById("account-logout-btn").addEventListener("click", openLogoutModal);
-document.getElementById("logout-confirm").addEventListener("click", () => { Session.logout(); });
-      document.getElementById("logout-cancel").addEventListener("click", closeLogoutModal);
-      logoutModal.addEventListener("click", e => { if (e.target === logoutModal) closeLogoutModal(); });
-
-      // ── Toggle Password Visibility ────────────────────────
-      function togglePwd(id, btn) {
-        const input = document.getElementById(id);
-        const isText = input.type === "text";
-        input.type = isText ? "password" : "text";
-        btn.innerHTML = isText
-          ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
-          : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+      if (res.ok) {
+        Session.updateUser({ is_default_password: false });
+        document.getElementById("security-form").reset();
+        clearStrength();
+        showToast("Password updated successfully! Your account is secure.", "success");
+      } else {
+        const data = await res.json();
+        showErr(data.detail || "Failed to change password. Please try again.");
       }
-
-      // ── Password Strength ─────────────────────────────────
-      function checkStrength(val) {
-        const segs = [document.getElementById("seg1"), document.getElementById("seg2"), document.getElementById("seg3"), document.getElementById("seg4")];
-        const label = document.getElementById("strength-label");
-        let score = 0;
-        if (val.length >= 8) score++;
-        if (/[A-Z]/.test(val)) score++;
-        if (/[0-9]/.test(val)) score++;
-        if (/[^A-Za-z0-9]/.test(val)) score++;
-
-        const colors = ["#ef4444", "#f97316", "#eab308", "#22c55e"];
-        const labels = ["Weak", "Fair", "Good", "Strong"];
-        segs.forEach((s, i) => { s.style.background = i < score ? colors[score - 1] : "#e5e7eb"; });
-        label.textContent = score === 0 ? "Enter a password" : labels[score - 1];
-        label.style.color = score === 0 ? "#9ca3af" : colors[score - 1];
-
-        // Update rules
-        updateRule("rule-length-icon", val.length >= 8);
-        updateRule("rule-upper-icon", /[A-Z]/.test(val));
-        updateRule("rule-number-icon", /[0-9]/.test(val));
-        updateRule("rule-default-icon", val !== "temp1234" && val.length > 0);
-      }
-
-      function updateRule(id, pass) {
-        const el = document.getElementById(id);
-        el.textContent = pass ? "✓" : "✗";
-        el.style.background = pass ? "#dcfce7" : "#e5e7eb";
-        el.style.color = pass ? "#16a34a" : "#9ca3af";
-      }
-
-      function clearStrength() {
-        ["seg1","seg2","seg3","seg4"].forEach(id => document.getElementById(id).style.background = "#e5e7eb");
-        document.getElementById("strength-label").textContent = "Enter a password";
-        document.getElementById("strength-label").style.color = "#9ca3af";
-        ["rule-length-icon","rule-upper-icon","rule-number-icon","rule-default-icon"].forEach(id => updateRule(id, false));
-      }
-
-      // ── Personal Info Form ────────────────────────────────
-      document.getElementById("profile-info-form").addEventListener("submit", async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById("save-info-btn");
-        const firstName = document.getElementById("field-firstname").value.trim();
-        const lastName = document.getElementById("field-lastname").value.trim();
-
-        if (!firstName || !lastName) {
-          showToast("Please fill in both first and last name.", "warning");
-          return;
-        }
-
-        btn.disabled = true;
-        btn.style.opacity = "0.7";
-
-        try {
-          const res = await fetch(`${BASE_URL}/students/${studentUser.id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ first_name: firstName, last_name: lastName }),
-          });
-
-          if (res.ok) {
-            studentUser.first_name = firstName;
-            studentUser.last_name = lastName;
-            localStorage.setItem("student_user", JSON.stringify(studentUser));
-            populate();
-            showToast("Profile updated successfully!", "success");
-          } else {
-            const data = await res.json();
-            showToast(data.detail || "Failed to update profile.", "error");
-          }
-        } catch {
-          showToast("Service unavailable. Please try again later.", "error");
-        } finally {
-          btn.disabled = false;
-          btn.style.opacity = "1";
-        }
-      });
-
-      document.getElementById("cancel-info-btn").addEventListener("click", () => {
-        document.getElementById("field-firstname").value = studentUser.first_name;
-        document.getElementById("field-lastname").value = studentUser.last_name;
-      });
-
-      // ── Security Form ─────────────────────────────────────
-      document.getElementById("security-form").addEventListener("submit", async function(e) {
-        e.preventDefault();
-        const errEl = document.getElementById("security-error");
-        errEl.style.display = "none";
-
-        const current = document.getElementById("sec-current").value;
-        const newPwd = document.getElementById("sec-new").value;
-        const confirm = document.getElementById("sec-confirm").value;
-        const btn = document.getElementById("save-security-btn");
-
-        const showErr = (msg) => { errEl.textContent = msg; errEl.style.display = "flex"; };
-
-        if (newPwd !== confirm) return showErr("New passwords do not match.");
-        if (newPwd.length < 8) return showErr("Password must be at least 8 characters.");
-        if (!/[A-Z]/.test(newPwd)) return showErr("Password must contain at least one uppercase letter.");
-        if (!/[0-9]/.test(newPwd)) return showErr("Password must contain at least one number.");
-        if (newPwd === "temp1234") return showErr("Please choose a different password from the default one.");
-
-        btn.disabled = true;
-        btn.style.opacity = "0.7";
-
-        try {
-          const res = await fetch(`${BASE_URL}/students/change-password`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-            body: JSON.stringify({ current_password: current, new_password: newPwd }),
-          });
-
-          if (res.ok) {
-            Session.updateUser({ is_default_password: false });
-            document.getElementById("security-form").reset();
-            clearStrength();
-            showToast("Password updated successfully! Your account is secure.", "success");
-          } else {
-            const data = await res.json();
-            showErr(data.detail || "Failed to change password. Please try again.");
-          }
-        } catch {
-          showErr("Service unavailable. Please try again later.");
-        } finally {
-          btn.disabled = false;
-          btn.style.opacity = "1";
-        }
-      });
-    </script>
+    } catch {
+      showErr("Service unavailable. Please try again later.");
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+    }
+  });
+</script>
   </body>
 </html>

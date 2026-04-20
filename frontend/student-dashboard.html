@@ -76,7 +76,7 @@
     <nav class="navbar" id="navbar">
       <div class="navbar-inner">
         <!-- Logo -->
-        <a href="index.html" class="navbar-logo" id="logo-link">
+        <a href="student-dashboard.html" class="navbar-logo" id="logo-link">
           <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
           <span class="logo-text">Tech4Girls</span>
         </a>
@@ -92,7 +92,7 @@
           <!-- Nav Links -->
           <li class="sidebar-section-label">Menu</li>
           <li>
-            <a href="index.html" class="active-link" id="nav-home">
+            <a href="student-dashboard.html" class="active-link" id="nav-home">
               <svg
                 width="16"
                 height="16"
@@ -157,7 +157,7 @@
           <li class="sidebar-divider"></li>
 
           <li>
-            <a href="profile.html" id="sidebar-profile" class="sidebar-profile-btn"">
+            <a href="profile.html" id="sidebar-profile" class="sidebar-profile-btn"
               <svg
                 width="16"
                 height="16"
@@ -589,10 +589,10 @@
         }
       }
 
-    
-   Session.requireAuth();
-const token = Session.getToken();
-const studentUser = Session.getUser();
+      // BASE_URL is declared in session.js — do not redeclare
+      Session.requireAuth();
+      const token = Session.getToken();
+      const studentUser = Session.getUser();
 
       // ── User Display
       document.querySelector(".dashboard-greeting h1").textContent =
