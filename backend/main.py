@@ -7,6 +7,7 @@ from routes.admin_route import router as admin_router
 from routes.staff_route import router as staff_router
 from routes.enrollment_route import router as enrollment_router
 from routes.material_route import router as material_router
+from routes.notifications_route import router as notifications_router
 
 
 Base.metadata.create_all(bind=engine)
@@ -34,6 +35,7 @@ app.include_router(admin_router)
 app.include_router(staff_router)
 app.include_router(enrollment_router)
 app.include_router(material_router)
+app.include_router(notifications_router)
 
 
 @app.get("/")
