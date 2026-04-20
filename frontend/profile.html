@@ -1043,14 +1043,14 @@
 
       navToggle.addEventListener("click", () => navLinks.classList.contains("active") ? closeNav() : openNav());
       navOverlay.addEventListener("click", closeNav);
-      navLinks.querySelectorAll("a:not(#sidebar-logout)").forEach(l => l.addEventListener("click", closeNav));
+     
 
       // ── Logout ───────────────────────────────────────────
       const logoutModal = document.getElementById("logout-modal");
       function openLogoutModal() { logoutModal.classList.add("open"); document.body.style.overflow = "hidden"; }
       function closeLogoutModal() { logoutModal.classList.remove("open"); document.body.style.overflow = ""; }
 
-      document.getElementById("sidebar-logout").addEventListener("click", e => { e.preventDefault(); closeNav(); setTimeout(openLogoutModal, 300); });
+      
       document.getElementById("account-logout-btn").addEventListener("click", openLogoutModal);
       document.getElementById("logout-confirm").addEventListener("click", () => { localStorage.removeItem("student_token"); localStorage.removeItem("student_user"); window.location.href = "login.html"; });
       document.getElementById("logout-cancel").addEventListener("click", closeLogoutModal);
