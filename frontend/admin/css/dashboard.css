@@ -1120,3 +1120,37 @@
     width: 100%;
   }
 }
+.announcement-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.announcement-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.announcement-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary, #111);
+}
+
+.announcement-message {
+  color: var(--text-secondary, #555);
+  font-size: 0.93rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.announcement-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-muted, #888);
+}
