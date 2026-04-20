@@ -167,7 +167,8 @@ h6 {
   align-items: center;
   gap: 4px;
   list-style: none;
-  margin-right: auto;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .navbar-links li a {
