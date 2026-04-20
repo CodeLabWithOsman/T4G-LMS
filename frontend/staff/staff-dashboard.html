@@ -716,7 +716,7 @@
       }
 
       async function deleteCourse(id) {
-        if (!confirm("Are you sure you want to delete this course?")) return;
+        if (!await("Are you sure you want to delete this course?")) return;
         const res = await fetch(`${BASE_URL}/courses/${id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

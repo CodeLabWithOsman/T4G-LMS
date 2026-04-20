@@ -634,9 +634,28 @@
       const BASE_URL = "https://t4g-lms-production.up.railway.app";
       const token = localStorage.getItem("admin_token");
 
+
       if (!token) {
         window.location.href = "admin-login.html";
       }
+function showToast(message, type = "info") {
+  const existing = document.getElementById("toast");
+  if (existing) existing.remove();
+  const colors = {
+    success: { bg: "#f0fdf4", border: "#86efac", text: "#16a34a" },
+    error:   { bg: "#fef2f2", border: "#fca5a5", text: "#dc2626" },
+    info:    { bg: "#eff6ff", border: "#93c5fd", text: "#1d4ed8" },
+    warning: { bg: "#fff3cd", border: "#f0ad4e", text: "#856404" },
+  };
+  const c = colors[type] || colors.info;
+  const toast = document.createElement("div");
+  toast.id = "toast";
+  toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn .3s ease;`;
+  toast.innerHTML = `<span>${message}</span>`;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
 
       // Navbar
       const navbar = document.getElementById("navbar");
@@ -828,7 +847,7 @@
       }
 
       async function deleteStudent(id) {
-        if (!confirm("Are you sure you want to remove this student?")) return;
+        if (!await("Are you sure you want to remove this student?")) return;
         await fetch(`${BASE_URL}/students/${id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -837,7 +856,7 @@
       }
 
       async function deleteStaff(id) {
-        if (!confirm("Are you sure you want to remove this staff member?"))
+        if (!await("Are you sure you want to remove this staff member?"))
           return;
         await fetch(`${BASE_URL}/staff/${id}`, {
           method: "DELETE",
@@ -871,7 +890,7 @@
             loadDashboard();
           } else {
             const data = await res.json();
-            alert(data.detail || "Failed to add student");
+            showToast(data.detail || "Failed to add student");
           }
         });
 
@@ -900,7 +919,7 @@
             loadDashboard();
           } else {
             const data = await res.json();
-            alert(data.detail || "Failed to add staff");
+            showToast(data.detail || "Failed to add staff");
           }
         });
 
@@ -922,12 +941,12 @@
             body: JSON.stringify(body),
           });
           if (res.ok) {
-            alert("Student enrolled successfully! ");
+            showToast("Student enrolled successfully! ");
             closeModal("enroll-modal");
             this.reset();
           } else {
             const data = await res.json();
-            alert(data.detail || "Failed to enroll student");
+            showToast(data.detail || "Failed to enroll student");
           }
         });
 // Search filtering
@@ -1027,7 +1046,7 @@ async function loadAnnouncements() {
 }
 
 async function deleteAnnouncement(id) {
-  if (!confirm("Delete this announcement?")) return;
+  if (!await("Delete this announcement?")) return;
   await fetch(`${BASE_URL}/announcements/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
@@ -1057,7 +1076,7 @@ document.getElementById("announcement-form").addEventListener("submit", async fu
     loadAnnouncements();
   } else {
     const data = await res.json();
-    alert(data.detail || "Failed to post announcement");
+    showToast(data.detail || "Failed to post announcement");
   }
 });
 
