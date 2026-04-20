@@ -953,10 +953,13 @@
       </div>
     </footer>
 
-    <script>
-      const BASE_URL = "https://t4g-lms-production.up.railway.app";
-      const token = localStorage.getItem("student_token");
-      const studentUser = JSON.parse(localStorage.getItem("student_user"));
+   
+  <script src="js/session.js"></script>
+<script>
+  const BASE_URL = "https://t4g-lms-production.up.railway.app";
+  Session.requireAuth();
+  const token = Session.getToken();
+  const studentUser = Session.getUser();
 
       // Auth Guard
       if (!token || !studentUser) {
@@ -1052,7 +1055,7 @@
 
       
       document.getElementById("account-logout-btn").addEventListener("click", openLogoutModal);
-      document.getElementById("logout-confirm").addEventListener("click", () => { localStorage.removeItem("student_token"); localStorage.removeItem("student_user"); window.location.href = "login.html"; });
+document.getElementById("logout-confirm").addEventListener("click", () => { Session.logout(); });
       document.getElementById("logout-cancel").addEventListener("click", closeLogoutModal);
       logoutModal.addEventListener("click", e => { if (e.target === logoutModal) closeLogoutModal(); });
 
@@ -1181,8 +1184,7 @@
           });
 
           if (res.ok) {
-            studentUser.is_default_password = false;
-            localStorage.setItem("student_user", JSON.stringify(studentUser));
+            Session.updateUser({ is_default_password: false });
             document.getElementById("security-form").reset();
             clearStrength();
             showToast("Password updated successfully! Your account is secure.", "success");
