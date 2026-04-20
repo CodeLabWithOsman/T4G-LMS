@@ -697,30 +697,8 @@
         logoutModal.classList.remove("open");
         document.body.style.overflow = "";
       }
-document.getElementById("sidebar-logout").addEventListener("click", (e) => {
-  e.preventDefault();
-  closeNav(); // close the sidebar first
-  setTimeout(() => {
-    openLogoutModal(); // wait for sidebar to finish closing, then open modal
-  }, 300); // 300ms matches your CSS transition duration
-});
+
      
-      document
-        .getElementById("logout-confirm")
-        .addEventListener("click", () => {
-          localStorage.removeItem("student_token");
-          localStorage.removeItem("student_user");
-          window.location.href = "login.html";
-        });
-
-      document.getElementById("logout-cancel").addEventListener("click", () => {
-        closeLogoutModal();
-      });
-
-      logoutModal.addEventListener("click", (e) => {
-        if (e.target === logoutModal) closeLogoutModal();
-      });
-
       // ── Default Password Banner & Modal ───────────────────
       const changePasswordModal = document.getElementById(
         "change-password-modal",
