@@ -1,7 +1,10 @@
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
 from models.announcement_model import Announcement
+from models.notification_model import Notification
+from models.student_model import Student  # import your Student model
 from schemas.announcement_schema import AnnouncementCreate, AnnouncementResponse
 
 router = APIRouter(prefix="/announcements", tags=["Announcements"])
@@ -22,6 +25,17 @@ def create_announcement(data: AnnouncementCreate, db: Session = Depends(get_db))
     db.add(announcement)
     db.commit()
     db.refresh(announcement)
+
+    # Create a notification for every student
+    students = db.query(Student).all()
+    for student in students:
+        notif = Notification(
+            student_id=student.id,
+            message=f" {data.title}: {data.message}"
+        )
+        db.add(notif)
+    db.commit()
+
     return announcement
 
 
