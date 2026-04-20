@@ -879,10 +879,10 @@ if (!/[0-9]/.test(newPassword)) {
           );
           const enrollments = await enrollRes.json();
 
-          document.getElementById("stat-enrolled").textContent =
-            enrollments.length;
-          document.getElementById("stat-inprogress").textContent =
-            enrollments.length;
+         let completedCount = 0; 
+
+document.getElementById("stat-enrolled").textContent = enrollments.length;
+document.getElementById("stat-inprogress").textContent = enrollments.length;
 
           const courseCardsContainer = document.getElementById("course-cards");
           courseCardsContainer.innerHTML = "";
@@ -1027,9 +1027,9 @@ if (!/[0-9]/.test(newPassword)) {
         `;
             });
           }
-
-          document.getElementById("stat-materials").textContent =
-            totalMaterials;
+document.getElementById("stat-materials").textContent = totalMaterials;
+document.getElementById("stat-completed").textContent = completedCount;
+document.getElementById("stat-inprogress").textContent = enrollments.length - completedCount;
 
           if (materialsBody.innerHTML === "") {
             materialsBody.innerHTML =
