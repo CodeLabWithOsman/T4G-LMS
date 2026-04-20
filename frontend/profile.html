@@ -562,7 +562,7 @@
 
           <li class="sidebar-section-label">Menu</li>
           <li>
-            <a href="dashboard.html" id="nav-home">
+            <a href="index" id="nav-home">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
@@ -571,12 +571,12 @@
             </a>
           </li>
           <li>
-            <a href="dashboard.html#courses" id="nav-courses">
+            <a href="student-dashboard.html#courses" id="nav-courses">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
               </svg>
-              Courses
+               My Courses
             </a>
           </li>
           <li>
@@ -1045,7 +1045,7 @@
       navOverlay.addEventListener("click", closeNav);
      
 
-      // ── Logout ───────────────────────────────────────────
+     
       const logoutModal = document.getElementById("logout-modal");
       function openLogoutModal() { logoutModal.classList.add("open"); document.body.style.overflow = "hidden"; }
       function closeLogoutModal() { logoutModal.classList.remove("open"); document.body.style.overflow = ""; }
