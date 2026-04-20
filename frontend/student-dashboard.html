@@ -176,6 +176,27 @@
           </li>
         </ul>
 
+        <div class="notif-bell-wrap" id="notif-bell-wrap">
+  <button class="notif-bell" id="notif-bell-btn" aria-label="Notifications">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <span class="notif-badge" id="notif-badge" style="display:none;">0</span>
+  </button>
+  <div class="notif-dropdown" id="notif-dropdown">
+    <div class="notif-dropdown-head">
+      <span>Notifications</span>
+      <button id="mark-all-read-btn">Mark all as read</button>
+    </div>
+    <div class="notif-list" id="notif-list">
+      <div class="notif-empty">No notifications yet</div>
+    </div>
+  </div>
+</div>
+
         <button
           class="nav-toggle"
           id="nav-toggle"
@@ -1017,7 +1038,6 @@ if (!/[0-9]/.test(newPassword)) {
       }
 
 
-      // ── Course Filter Tabs ────────────────────────────────
       function bindTabs() {
         const tabs = document.querySelectorAll(".dashboard-tab");
         tabs.forEach((tab) => {
@@ -1036,6 +1056,83 @@ if (!/[0-9]/.test(newPassword)) {
       }
 
       loadCourses();
+
+
+      // ── Notifications ─────────────────────────────────
+async function loadNotifications() {
+  try {
+    const res = await fetch(`${BASE_URL}/notifications/student/${studentUser.id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const notifications = await res.json();
+
+    const badge = document.getElementById("notif-badge");
+    const list = document.getElementById("notif-list");
+    const unread = notifications.filter(n => !n.is_read);
+
+    if (unread.length > 0) {
+      badge.textContent = unread.length;
+      badge.style.display = "flex";
+    } else {
+      badge.style.display = "none";
+    }
+
+    if (notifications.length === 0) {
+      list.innerHTML = `<div class="notif-empty">No notifications yet</div>`;
+      return;
+    }
+
+    list.innerHTML = notifications.map(n => `
+      <div class="notif-item ${n.is_read ? '' : 'unread'}" data-id="${n.id}">
+        <div class="notif-dot" style="${n.is_read ? 'opacity:0;' : ''}"></div>
+        <div>
+          <div>${n.message}</div>
+          <div style="font-size:0.75rem;color:#9ca3af;margin-top:3px;">
+            ${new Date(n.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    list.querySelectorAll(".notif-item").forEach(item => {
+      item.addEventListener("click", async () => {
+        const id = item.dataset.id;
+        await fetch(`${BASE_URL}/notifications/${id}/read`, {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        item.classList.remove("unread");
+        item.querySelector(".notif-dot").style.opacity = "0";
+        loadNotifications();
+      });
+    });
+
+  } catch (err) {
+    console.error("Failed to load notifications:", err);
+  }
+}
+
+document.getElementById("notif-bell-btn").addEventListener("click", (e) => {
+  e.stopPropagation();
+  document.getElementById("notif-dropdown").classList.toggle("open");
+  loadNotifications();
+});
+
+document.getElementById("mark-all-read-btn").addEventListener("click", async () => {
+  await fetch(`${BASE_URL}/notifications/student/${studentUser.id}/read-all`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  loadNotifications();
+});
+
+document.addEventListener("click", (e) => {
+  if (!document.getElementById("notif-bell-wrap").contains(e.target)) {
+    document.getElementById("notif-dropdown").classList.remove("open");
+  }
+});
+
+loadNotifications();
     </script>
   </body>
 </html>
