@@ -1,3 +1,4 @@
+from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
@@ -38,3 +39,29 @@ def unenroll(student_id: str, course_id: str, db: Session = Depends(get_db)):
     if not result:
         raise HTTPException(status_code=404, detail="Enrollment not found")
     return {"message": "Student unenrolled successfully"}
+
+
+@router.put("/{enrollment_id}/complete")
+def mark_complete(enrollment_id: str, db: Session = Depends(get_db)):
+    from models.enrollment_model import Enrollment
+    from models.notification_model import Notification
+
+    enrollment = db.query(Enrollment).filter(
+        Enrollment.id == enrollment_id).first()
+    if not enrollment:
+        raise HTTPException(status_code=404, detail="Enrollment not found")
+
+    enrollment.is_completed = True
+    enrollment.completed_at = datetime.utcnow()
+    db.commit()
+    db.refresh(enrollment)
+
+    # Notify the student
+    notif = Notification(
+        student_id=enrollment.student_id,
+        message="🎉 Congratulations! You have completed a course."
+    )
+    db.add(notif)
+    db.commit()
+
+    return {"message": "Course marked as complete"}
