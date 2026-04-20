@@ -3769,3 +3769,8 @@ nav-overlay {
     text-decoration: none;
   }
 }
+
+#nav-features {
+  pointer-events: auto !important;
+  z-index: 9999;
+}
