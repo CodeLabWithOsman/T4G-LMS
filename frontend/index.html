@@ -439,14 +439,16 @@
 
     <script>
 
+      // Safe reads — guard against corrupted localStorage
       const token = localStorage.getItem("student_token");
-const studentUser = JSON.parse(localStorage.getItem("student_user"));
+      let studentUser = null;
+      try { studentUser = JSON.parse(localStorage.getItem("student_user")); } catch { /* ignore */ }
 
-function logout() {
-  localStorage.removeItem("student_token");
-  localStorage.removeItem("student_user");
-  window.location.href = "login.html";
-}
+      function logout() {
+        // Remove all session keys including expiry so Session.isValid() returns false
+        ["student_token", "student_user", "student_token_expiry"].forEach(k => localStorage.removeItem(k));
+        window.location.replace("login.html");
+      }
    
       const navbar = document.getElementById("navbar");
       window.addEventListener("scroll", () => {
