@@ -1382,6 +1382,8 @@ h6 {
   align-items: center;
   gap: 4px;
   list-style: none;
+  margin-left: auto;
+    margin-right: 16px;
 }
 
 .navbar-links li a {
@@ -3773,4 +3775,16 @@ nav-overlay {
 #nav-features {
   pointer-events: auto !important;
   z-index: 9999;
+}
+@media (min-width: 769px) {
+
+  .sidebar-brand,
+  .sidebar-section-label,
+  .sidebar-divider {
+    display: none;
+  }
+
+  .navbar-links li a svg {
+    display: none;
+  }
 }

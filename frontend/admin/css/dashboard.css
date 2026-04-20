@@ -1154,3 +1154,15 @@
   font-size: 0.82rem;
   color: var(--text-muted, #888);
 }
+@media (min-width: 769px) {
+
+  .sidebar-brand,
+  .sidebar-section-label,
+  .sidebar-divider {
+    display: none;
+  }
+
+  .navbar-links li a svg {
+    display: none;
+  }
+}
