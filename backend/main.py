@@ -1,3 +1,4 @@
+from routes.announcement_route import router as announcement_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
@@ -36,6 +37,7 @@ app.include_router(staff_router)
 app.include_router(enrollment_router)
 app.include_router(material_router)
 app.include_router(notifications_router)
+app.include_router(announcement_router)
 
 
 @app.get("/")
