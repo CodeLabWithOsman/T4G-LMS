@@ -724,7 +724,7 @@
         if (res.ok) {
           loadCourses();
         } else {
-          alert("Failed to delete course");
+          showToast("Failed to delete course");
         }
       }
 
@@ -756,7 +756,7 @@
             loadCourses();
           } else {
             const data = await res.json();
-            alert(data.detail || "Failed to create course");
+            showToast(data.detail || "Failed to create course");
           }
         });
 
@@ -785,13 +785,13 @@
       function handleFile(file) {
         if (!file) return;
         if (file.type !== "application/pdf") {
-          alert(
+          showToast(
             `"${file.name}" is not a PDF file. Only PDF files are allowed.`,
           );
           return;
         }
         if (file.size > 10 * 1024 * 1024) {
-          alert(`"${file.name}" exceeds the 10MB file size limit.`);
+          showToast(`"${file.name}" exceeds the 10MB file size limit.`);
           return;
         }
         selectedFile = file;
@@ -834,11 +834,11 @@
           const description = document.getElementById("material-desc").value;
 
           if (!courseId) {
-            alert("Please select a course.");
+            showToast("Please select a course.");
             return;
           }
           if (!selectedFile) {
-            alert("Please upload a PDF file.");
+            showToast("Please upload a PDF file.");
             return;
           }
 
@@ -867,17 +867,17 @@
         body: JSON.stringify(body),
       });
       if (res.ok) {
-        alert(`"${selectedFile.name}" uploaded successfully! ✅`);
+        showToast(`"${selectedFile.name}" uploaded successfully! ✅`);
         clearFile();
         document.getElementById("upload-form").reset();
         loadCourses();
       } else {
         const data = await res.json();
-        alert(data.detail || "Failed to upload material");
+        showToast(data.detail || "Failed to upload material");
       }
     } catch (error) {
       console.error("Upload error:", error);
-      alert("Upload failed: " + error.message);
+      showToast("Upload failed: " + error.message);
     } finally {
       btn.textContent = "Upload Material";
       btn.disabled = false;
@@ -886,7 +886,7 @@
   reader.readAsDataURL(selectedFile);
 } catch (error) {
   console.error("Upload error:", error);
-  alert("Upload failed. Please try again.");
+  showToast("Upload failed. Please try again.");
   btn.textContent = "Upload Material";
   btn.disabled = false;
 }
@@ -977,7 +977,7 @@ async function markComplete(enrollmentId, btn) {
   } else {
     btn.disabled = false;
     btn.textContent = "Mark Complete";
-    alert("Failed to mark complete. Try again.");
+    showToast("Failed to mark complete. Try again.");
   }
 }
 
@@ -1002,7 +1002,7 @@ function closeChangePassword() {
         document.body.style.overflow = ''
         document.getElementById('change-password-form').reset()
     } else {
-        alert('Please change your default password first to secure your account!')
+        showToast('Please change your default password first to secure your account!')
     }
 }
 
@@ -1013,15 +1013,15 @@ document.getElementById('change-password-form').addEventListener('submit', async
     const confirmPassword = document.getElementById('confirm-password').value
 
     if (newPassword !== confirmPassword) {
-        alert('New passwords do not match!')
+       showToast('New passwords do not match!')
         return
     }
     if (newPassword.length < 6) {
-        alert('New password must be at least 6 characters!')
+        showToast('New password must be at least 6 characters!')
         return
     }
     if (newPassword === 'temp1234') {
-        alert('Please choose a different password from the default one!')
+        showToast('Please choose a different password from the default one!')
         return
     }
 
@@ -1050,11 +1050,11 @@ document.getElementById('change-password-form').addEventListener('submit', async
     document.body.style.overflow = ''
     document.getElementById('change-password-form').reset()
     
-    alert('Password changed successfully! ✅')
+    showToast('Password changed successfully! ✅')
 }
     else {
         const data = await res.json()
-        alert(data.detail || 'Failed to change password')
+        showToast(data.detail || 'Failed to change password')
     }
 })
 
