@@ -8,99 +8,74 @@
       name="description"
       content="Student sign in to your Tech4Girls LMS account to access courses, assignments, and your learning dashboard."
     />
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
     <link rel="apple-touch-icon" href="img/Tech4Girls logo.png" />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="login-page">
-    
-	<nav class="navbar" id="navbar">
-		<div class="navbar-inner">
 
-			<!-- Logo -->
-			<a href="index.html" class="navbar-logo" id="logo-link">
-				<img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
-				<span class="logo-text">Tech4Girls</span>
-			</a>
+    <nav class="navbar" id="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo" id="logo-link">
+          <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+          <span class="logo-text">Tech4Girls</span>
+        </a>
 
-			<!-- Desktop nav links (also becomes the sidebar on mobile) -->
-			<ul class="navbar-links" id="navbar-links">
+        <ul class="navbar-links" id="navbar-links">
+          <li class="sidebar-brand">
+            <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+            <span>Tech4Girls</span>
+          </li>
+          <li class="sidebar-section-label">Menu</li>
+          <li><a href="index.html" class="active-link" id="nav-home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+          </a></li>
+          <li><a href="index.html#features" id="nav-features">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Features
+          </a></li>
+          <li><a href="index.html#about" id="nav-about">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            About
+          </a></li>
+          <li class="sidebar-divider"></li>
+          <li>
+            <a href="login.html" class="navbar-signin-btn" id="nav-signin">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+              Sign In
+            </a>
+          </li>
+          <li class="sidebar-footer">
+            <p>Don't have an account yet?</p>
+            <a href="#" id="contact-admin-link">Contact your administrator</a>
+          </li>
+        </ul>
 
-  <!-- Sidebar Header -->
-  <li class="sidebar-brand">
-    <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
-    <span>Tech4Girls</span>
-  </li>
-
-  <!-- Nav Links -->
-  <li class="sidebar-section-label">Menu</li>
-  <li><a href="index.html" class="active-link" id="nav-home">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
-    Home
-  </a></li>
-  <li><a href="index.html" id="nav-features">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-    </svg>
-    Features
-  </a></li>
-  <li><a href="#index.html#about" id="nav-about">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    About
-  </a></li>
-
-  <!-- Divider -->
-  <li class="sidebar-divider"></li>
-
-  <!-- Sign In button -->
-  <li>
-    <a href="login.html" class="navbar-signin-btn" id="nav-signin">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-        <polyline points="10 17 15 12 10 7"/>
-        <line x1="15" y1="12" x2="3" y2="12"/>
-      </svg>
-      Sign In
-    </a>
-  </li>
-
-  <!-- Footer note -->
-  <li class="sidebar-footer">
-    <p>Don't have an account yet?</p>
-            <a href="#" id="contact-admin-link">Contact your administrator</a>   
-  </li>
-
-</ul>
-
-			
-			<button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-			</button>
-
-		</div>
-
-		<!-- Dark overlay behind sidebar -->
-		<div class="nav-overlay" id="nav-overlay"></div>
-	</nav>
-
-
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+      <div class="nav-overlay" id="nav-overlay"></div>
+    </nav>
 
     <main class="login-main">
       <div class="login-wrapper">
@@ -108,9 +83,7 @@
           <div class="login-visual-content">
             <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
             <h2>Welcome Back</h2>
-            <p>
-              Sign in to continue your learning journey and access your courses.
-            </p>
+            <p>Sign in to continue your learning journey and access your courses.</p>
           </div>
         </div>
 
@@ -121,340 +94,389 @@
           </div>
 
           <form id="login-form" action="#" method="POST">
-  <div class="form-group">
-    <label class="form-label" for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-input"
-      id="email"
-      name="email"
-      placeholder="you@example.com"
-      required
-      autocomplete="email"
-    />
-  </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input
+                type="email"
+                class="form-input"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
+              />
+            </div>
 
-  <div class="form-group">
-    <label class="form-label" for="password">Password</label>
-    <div style="position: relative">
-      <input
-        type="password"
-        class="form-input"
-        id="password"
-        name="password"
-        placeholder="Enter your password"
-        required
-        autocomplete="current-password"
-        style="padding-right: 44px"
-      />
-      <button
-        type="button"
-        onclick="togglePassword('password', this)"
-        style="
-          position: absolute;
-          right: 12px;
-          top: 50%;
-          transform: translateY(-50%);
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 4px;
-          color: #6b7280;
-        "
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-          <circle cx="12" cy="12" r="3" />
-        </svg>
-      </button>
+            <div class="form-group">
+              <label class="form-label" for="password">Password</label>
+              <div style="position: relative">
+                <input
+                  type="password"
+                  class="form-input"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+                  style="padding-right: 44px"
+                />
+                <button
+                  type="button"
+                  onclick="togglePassword('password', this)"
+                  style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="login-error" id="login-error" style="display:none;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <span id="login-error-msg"></span>
+            </div>
+
+            <div class="form-row">
+              <label class="form-remember">
+                <input type="checkbox" id="remember" name="remember" />
+                Remember me
+              </label>
+              <a href="forgot-password.html" class="form-forgot" id="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-login" id="login-submit">Sign In</button>
+          </form>
+
+          <p class="login-footer-text" id="desktop-contact">
+            Don't have an account?
+            <a href="#" id="contact-admin-link-desktop">Contact your administrator</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Contact Admin Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+        <div class="modal-header">
+          <div class="modal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h2>Request an Account</h2>
+          <p>Fill in your details and the administrator will create an account for you.</p>
+        </div>
+        <form class="modal-form" id="request-form">
+          <div class="form-group">
+            <label for="req-name">Full Name</label>
+            <input type="text" id="req-name" placeholder="e.g. Hajira Baffoe" required />
+          </div>
+          <div class="form-group">
+            <label for="req-track">Track</label>
+            <select id="req-track" required>
+              <option value="" disabled selected>Select your track</option>
+              <option value="Frontend">Frontend</option>
+              <option value="Backend">Backend</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="req-email">Email Address</label>
+            <input type="email" id="req-email" placeholder="e.g. hajira@email.com" required />
+          </div>
+          <button type="submit" class="modal-submit" id="modal-submit">Send Request</button>
+          <p class="modal-status" id="modal-status"></p>
+        </form>
+      </div>
     </div>
-  </div>
-
-  <!-- Error message -->
-  <div class="login-error" id="login-error" style="display:none;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    <span id="login-error-msg"></span>
-  </div>
-
-  <div class="form-row">
-    <label class="form-remember">
-      <input type="checkbox" id="remember" name="remember" />
-      Remember me
-    </label>
-    <a href="forgot-password.html" class="form-forgot" id="forgot-password">
-      Forgot password?
-    </a>
-  </div>
-
-  <button type="submit" class="btn-login" id="login-submit">
-    Sign In
-  </button>
-</form>
-
-<p class="login-footer-text" id="desktop-contact">
-  Don't have an account? 
-  <a href="#" id="contact-admin-link-desktop">Contact your administrator</a>
-</p>
-  </div>
-</div>
-
-<!-- Contact Admin Modal -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" id="modal-close" aria-label="Close modal">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
-    <div class="modal-header">
-      <div class="modal-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-      </div>
-      <h2>Request an Account</h2>
-      <p>Fill in your details and the administrator will create an account for you.</p>
-    </div>
-    <form class="modal-form" id="request-form">
-      <div class="form-group">
-        <label for="req-name">Full Name</label>
-        <input type="text" id="req-name" placeholder="e.g. Hajira Baffoe" required />
-      </div>
-      <div class="form-group">
-        <label for="req-track">Track</label>
-        <select id="req-track" required>
-          <option value="" disabled selected>Select your track</option>
-          <option value="Frontend">Frontend</option>
-          <option value="Backend">Backend</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="req-email">Email Address</label>
-        <input type="email" id="req-email" placeholder="e.g. hajira@email.com" required />
-      </div>
-      <button type="submit" class="modal-submit" id="modal-submit">Send Request</button>
-      <p class="modal-status" id="modal-status"></p>
-    </form>
-  </div>
-</div>
-    </body>
 
     <script>
       const BASE_URL = "https://t4g-lms-production.up.railway.app";
 
+      // ─────────────────────────────────────────────────────────────────
+      // SESSION HELPERS
+      // All session reads/writes go through these functions so there is
+      // exactly one place to change if the storage key ever changes.
+      // ─────────────────────────────────────────────────────────────────
+      const Session = {
+        TOKEN_KEY:    "student_token",
+        USER_KEY:     "student_user",
+        EXPIRY_KEY:   "student_token_expiry",
+        REFRESH_KEY:  "student_token_refresh",
 
-const token = localStorage.getItem("student_token");
-const studentUser = JSON.parse(localStorage.getItem("student_user"));
+        save(token, user, expiresInSeconds) {
+          localStorage.setItem(this.TOKEN_KEY, token);
+          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
 
-function logout() {
-  localStorage.removeItem("student_token");
-  localStorage.removeItem("student_user");
-  window.location.href = "login.html";
-}
+          // Store when this token expires (epoch ms) so we can check locally
+          // without a network call. Default to 7 days if server doesn't tell us.
+          const ttl = expiresInSeconds || 60 * 60 * 24 * 7; // 7 days default
+          const expiryMs = Date.now() + ttl * 1000;
+          localStorage.setItem(this.EXPIRY_KEY, String(expiryMs));
+        },
 
-if (token && studentUser) {
-  window.location.href = "student-dashboard.html";
-}
-function showLoginError(msg) {
-  const box = document.getElementById("login-error");
-  const text = document.getElementById("login-error-msg");
-  text.textContent = msg;
-  box.style.display = "flex";
-}
+        getToken()  { return localStorage.getItem(this.TOKEN_KEY); },
+        getUser()   {
+          try {
+            return JSON.parse(localStorage.getItem(this.USER_KEY));
+          } catch {
+            return null;
+          }
+        },
 
-function hideLoginError() {
-  document.getElementById("login-error").style.display = "none";
-}
+        // Returns true if a token exists AND has not locally expired
+        isValid() {
+          const token  = this.getToken();
+          const user   = this.getUser();
+          const expiry = localStorage.getItem(this.EXPIRY_KEY);
+          if (!token || !user) return false;
+          // If we never stored an expiry (old session), treat as valid
+          // and let the server reject it if it is stale.
+          if (!expiry) return true;
+          return Date.now() < Number(expiry);
+        },
 
-document.getElementById("login-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  hideLoginError();
+        // Wipe everything — only called on explicit logout or server 401
+        clear() {
+          localStorage.removeItem(this.TOKEN_KEY);
+          localStorage.removeItem(this.USER_KEY);
+          localStorage.removeItem(this.EXPIRY_KEY);
+          localStorage.removeItem(this.REFRESH_KEY);
+        },
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const btn = document.getElementById("login-submit");
+        // Update only the user object (e.g. after password change)
+        updateUser(user) {
+          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+        },
+      };
 
-  btn.textContent = "Signing in...";
-  btn.style.opacity = "0.7";
-  btn.style.pointerEvents = "none";
+      // ─────────────────────────────────────────────────────────────────
+      // If a valid session already exists, skip the login page entirely.
+      // The user should never have to re-enter credentials unless they
+      // explicitly logged out or their token expired on the server.
+      // ─────────────────────────────────────────────────────────────────
+      if (Session.isValid()) {
+        window.location.replace("student-dashboard.html");
+      }
 
-  try {
-    const response = await fetch(`${BASE_URL}/students/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+      // ─────────────────────────────────────────────────────────────────
+      // LOGIN FORM
+      // ─────────────────────────────────────────────────────────────────
+      function showLoginError(msg) {
+        const box  = document.getElementById("login-error");
+        const text = document.getElementById("login-error-msg");
+        text.textContent = msg;
+        box.style.display = "flex";
+      }
 
-    const data = await response.json();
+      function hideLoginError() {
+        document.getElementById("login-error").style.display = "none";
+      }
 
-    if (response.ok) {
-      localStorage.setItem("student_token", data.access_token);
-      localStorage.setItem("student_user", JSON.stringify(data.student));
-      window.location.href = "student-dashboard.html";
-    } else {
-     
-      showLoginError("Invalid credentials. Please check your email and password.");
-      btn.textContent = "Sign In";
-      btn.style.opacity = "1";
-      btn.style.pointerEvents = "auto";
-    }
-  } catch (error) {
-    showLoginError("Unable to connect. Please try again shortly.");
-    btn.textContent = "Sign In";
-    btn.style.opacity = "1";
-    btn.style.pointerEvents = "auto";
-  }
-});
+      function setButtonLoading(loading) {
+        const btn = document.getElementById("login-submit");
+        btn.textContent        = loading ? "Signing in..." : "Sign In";
+        btn.style.opacity      = loading ? "0.7" : "1";
+        btn.style.pointerEvents = loading ? "none" : "auto";
+      }
 
-// Hide error when user starts typing again
-document.getElementById("email").addEventListener("input", hideLoginError);
-document.getElementById("password").addEventListener("input", hideLoginError);
+      document.getElementById("login-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        hideLoginError();
+        setButtonLoading(true);
 
+        const email    = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
+        try {
+          const response = await fetch(`${BASE_URL}/students/login`, {
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify({ email, password }),
+          });
 
+          const data = await response.json();
 
-function togglePassword(inputId, btn) {
-  const input = document.getElementById(inputId);
-  if (input.type === "password") {
-    input.type = "text";
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
-  } else {
-    input.type = "password";
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-  }
-}
+          if (response.ok) {
+            // ── Defensive: support both data.student and data.user ──────
+            // Some FastAPI setups return the user under different keys.
+            // We check both so a backend key rename never silently breaks login.
+            const user = data.student ?? data.user ?? null;
 
-// ── Navbar scroll shadow ──────────────────────────────
-const navbar = document.getElementById("navbar");
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 10);
-});
+            if (!user) {
+              // API returned 200 but no user object — treat as a server bug
+              showLoginError("Login succeeded but user data is missing. Please contact your administrator.");
+              setButtonLoading(false);
+              return;
+            }
 
-// ── Sidebar drawer ────────────────────────────────────
-const navToggle = document.getElementById("nav-toggle");
-const navLinks = document.getElementById("navbar-links");
-const navOverlay = document.getElementById("nav-overlay");
+            // ── Persist session ─────────────────────────────────────────
+            // expires_in comes from your FastAPI JWT settings (seconds).
+            // If the server does not return it, Session.save defaults to 7 days.
+            Session.save(data.access_token, user, data.expires_in ?? null);
 
-function openNav() {
-  navToggle.classList.add("active");
-  navLinks.classList.add("active");
-  navOverlay.classList.add("active");
-  document.body.style.overflow = "hidden";
-  document.documentElement.style.overflow = "hidden"; 
-}
+            // ── Redirect ────────────────────────────────────────────────
+            window.location.replace("student-dashboard.html");
 
-function closeNav() {
-  navToggle.classList.remove("active");
-  navLinks.classList.remove("active");
-  navOverlay.classList.remove("active");
-  document.body.style.overflow = "";
-   document.documentElement.style.overflow = "";
-}
+          } else {
+            // Map common HTTP status codes to friendly messages
+            const statusMessages = {
+              401: "Incorrect email or password. Please try again.",
+              403: "Your account has been suspended. Contact your administrator.",
+              404: "No account found with that email address.",
+              429: "Too many attempts. Please wait a moment and try again.",
+            };
+            const msg = statusMessages[response.status]
+              ?? data.detail
+              ?? "Login failed. Please check your credentials.";
+            showLoginError(msg);
+            setButtonLoading(false);
+          }
 
-navToggle.addEventListener("click", () => {
-  navLinks.classList.contains("active") ? closeNav() : openNav();
-});
+        } catch (error) {
+          // Network failure — do NOT clear the session, the user may just
+          // be offline temporarily.
+          showLoginError("Unable to connect to the server. Please check your internet connection.");
+          setButtonLoading(false);
+        }
+      });
 
-navOverlay.addEventListener("click", closeNav);
+      // Clear error as user corrects input
+      document.getElementById("email").addEventListener("input", hideLoginError);
+      document.getElementById("password").addEventListener("input", hideLoginError);
 
-navLinks.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", closeNav);
-});
+      // ─────────────────────────────────────────────────────────────────
+      // PASSWORD TOGGLE
+      // ─────────────────────────────────────────────────────────────────
+      function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+          input.type = "text";
+          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+        } else {
+          input.type = "password";
+          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+        }
+      }
 
+      // ─────────────────────────────────────────────────────────────────
+      // NAVBAR
+      // ─────────────────────────────────────────────────────────────────
+      const navbar    = document.getElementById("navbar");
+      const navToggle = document.getElementById("nav-toggle");
+      const navLinks  = document.getElementById("navbar-links");
+      const navOverlay = document.getElementById("nav-overlay");
 
-const desktopContact = document.getElementById("contact-admin-link-desktop");
-if (desktopContact) {
-  desktopContact.addEventListener("click", (e) => {
-    e.preventDefault();
-    openModal();
-  });
-}
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 10);
+      });
 
-const modalOverlay = document.getElementById("modal-overlay");
-const modalClose = document.getElementById("modal-close");
-const requestForm = document.getElementById("request-form");
-const modalStatus = document.getElementById("modal-status");
-const modalSubmit = document.getElementById("modal-submit");
+      function openNav() {
+        navToggle.classList.add("active");
+        navLinks.classList.add("active");
+        navOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+      }
 
-if (modalClose) {
-  modalClose.addEventListener("click", closeModal);
-}
+      function closeNav() {
+        navToggle.classList.remove("active");
+        navLinks.classList.remove("active");
+        navOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
 
-function openModal() {
-  closeNav();
-  if (modalOverlay) {
-  modalOverlay.classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-}
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.contains("active") ? closeNav() : openNav();
+      });
+      navOverlay.addEventListener("click", closeNav);
+      navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", closeNav));
 
-function closeModal() {
-  if (modalOverlay) {
-  modalOverlay.classList.remove("open");
-  document.body.style.overflow = "";
-}
-}
+      // ─────────────────────────────────────────────────────────────────
+      // CONTACT ADMIN MODAL
+      // ─────────────────────────────────────────────────────────────────
+      const modalOverlay = document.getElementById("modal-overlay");
+      const modalClose   = document.getElementById("modal-close");
+      const requestForm  = document.getElementById("request-form");
+      const modalStatus  = document.getElementById("modal-status");
+      const modalSubmit  = document.getElementById("modal-submit");
 
+      function openModal() {
+        closeNav();
+        if (modalOverlay) {
+          modalOverlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+      }
 
-document.querySelectorAll("#contact-admin-link").forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    openModal();
-  });
-});
+      function closeModal() {
+        if (modalOverlay) {
+          modalOverlay.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+      }
 
+      if (modalClose) modalClose.addEventListener("click", closeModal);
+      if (modalOverlay) modalOverlay.addEventListener("click", e => {
+        if (e.target === modalOverlay) closeModal();
+      });
 
+      document.querySelectorAll("#contact-admin-link").forEach(link => {
+        link.addEventListener("click", e => { e.preventDefault(); openModal(); });
+      });
 
+      const desktopContact = document.getElementById("contact-admin-link-desktop");
+      if (desktopContact) {
+        desktopContact.addEventListener("click", e => { e.preventDefault(); openModal(); });
+      }
 
-if (modalOverlay) {
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) closeModal();
-  });
-}
+      if (requestForm) {
+        requestForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
 
+          const name  = document.getElementById("req-name").value;
+          const track = document.getElementById("req-track").value;
+          const email = document.getElementById("req-email").value;
 
+          modalSubmit.disabled     = true;
+          modalSubmit.textContent  = "Sending...";
+          modalStatus.textContent  = "";
+          modalStatus.className    = "modal-status";
 
-if (requestForm) {
-requestForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+          try {
+            const res = await fetch("https://formspree.io/f/mkokrynl", {
+              method:  "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body:    JSON.stringify({ name, track, email }),
+            });
 
-  const name = document.getElementById("req-name").value;
-  const track = document.getElementById("req-track").value;
-  const email = document.getElementById("req-email").value;
-
-  modalSubmit.disabled = true;
-  modalSubmit.textContent = "Sending...";
-  modalStatus.textContent = "";
-  modalStatus.className = "modal-status";
-
-  try {
-    const res = await fetch("https://formspree.io/f/mkokrynl", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ name, track, email }),
-    });
-
-    if (res.ok) {
-      modalStatus.textContent = "✓ Request sent! The admin will be in touch.";
-      modalStatus.classList.add("success");
-      requestForm.reset();
-      setTimeout(closeModal, 2500);
-    } else {
-      throw new Error();
-    }
-  } catch {
-    modalStatus.textContent = "✗ Something went wrong. Please try again.";
-    modalStatus.classList.add("error");
-  } finally {
-    modalSubmit.disabled = false;
-    modalSubmit.textContent = "Send Request";
-  }
-});
-}
+            if (res.ok) {
+              modalStatus.textContent = "✓ Request sent! The admin will be in touch.";
+              modalStatus.classList.add("success");
+              requestForm.reset();
+              setTimeout(closeModal, 2500);
+            } else {
+              throw new Error();
+            }
+          } catch {
+            modalStatus.textContent = "✗ Something went wrong. Please try again.";
+            modalStatus.classList.add("error");
+          } finally {
+            modalSubmit.disabled    = false;
+            modalSubmit.textContent = "Send Request";
+          }
+        });
+      }
     </script>
   </body>
 </html>

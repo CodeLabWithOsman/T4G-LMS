@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+
   </head>
   <body class="dashboard-page">
     <!-- Default Password Banner -->
@@ -573,7 +574,7 @@
     </footer>
 
 
-   
+   <script src="js/session.js"></script>   
     <script>
       function togglePassword(inputId, btn) {
         const input = document.getElementById(inputId);
@@ -589,13 +590,9 @@
       }
 
       const BASE_URL = "https://t4g-lms-production.up.railway.app";
-      const token = localStorage.getItem("student_token");
-      const studentUser = JSON.parse(localStorage.getItem("student_user"));
-
-      // ── Auth Guard 
-      if (!token || !studentUser) {
-        window.location.href = "login.html";
-      }
+   Session.requireAuth();
+const token = Session.getToken();
+const studentUser = Session.getUser();
 
       // ── User Display
       document.querySelector(".dashboard-greeting h1").textContent =
@@ -707,18 +704,11 @@
       });
 
       //logout modal
-      const logoutModal = document.getElementById("logout-modal");
+     
+      
 
-      function openLogoutModal() {
-        logoutModal.classList.add("open");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeLogoutModal() {
-        logoutModal.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-
+      
+      
      
       // ── Default Password Banner & Modal ───────────────────
       const changePasswordModal = document.getElementById(
@@ -839,8 +829,7 @@ if (!/[0-9]/.test(newPassword)) {
 
             if (res.ok) {
               // Update local storage
-              studentUser.is_default_password = false;
-              localStorage.setItem("student_user", JSON.stringify(studentUser));
+Session.updateUser({ is_default_password: false });
 
               // Hide banner, show close button, close modal
               document.getElementById("default-password-banner").style.display =

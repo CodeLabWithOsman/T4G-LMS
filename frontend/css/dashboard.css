@@ -1399,3 +1399,10 @@ body {
   color: #9ca3af;
   font-size: 0.875rem;
 }
+/* Mobile notification dropdown fix */
+@media (max-width: 600px) {
+  .notif-dropdown {
+    width: calc(100vw - 32px);
+    right: -8px;
+  }
+}
