@@ -436,6 +436,24 @@
         </div>
     </div>
 </div>
+<!-- Student Progress Modal -->
+<div class="modal-overlay" id="progress-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Student Progress</h3>
+      <button class="modal-close" onclick="closeModal('progress-modal')">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="progress-student-name" style="font-weight:600; margin-bottom:16px;"></p>
+      <div id="progress-courses-list"></div>
+    </div>
+  </div>
+</div>
 
 
     <footer class="footer" id="footer">
@@ -630,16 +648,24 @@
                 <td>${studentCount}</td>
                 <td>${materialCount} PDFs</td>
                 <td><span class="status-dot active"></span> ${course.status}</td>
-                <td>
-                  <div class="table-actions">
-                    <button class="table-action-btn btn-delete" onclick="deleteCourse('${course.id}')" title="Delete Course">
-                      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="3 6 5 6 21 6"/>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
+               <!-- Student Progress Modal -->
+<div class="modal-overlay" id="progress-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Student Progress</h3>
+      <button class="modal-close" onclick="closeModal('progress-modal')">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="progress-student-name" style="font-weight:600; margin-bottom:16px;"></p>
+      <div id="progress-courses-list"></div>
+    </div>
+  </div>
+</div>
               </tr>
             `;
             tbody.innerHTML += row;
@@ -839,6 +865,95 @@
   btn.disabled = false;
 }
           }); 
+
+
+async function openCourseStudents(courseId, courseName) {
+  document.getElementById("progress-student-name").textContent = `${courseName} — Enrolled Students`;
+  document.getElementById("progress-courses-list").innerHTML =
+    '<p style="color:var(--text-muted);">Loading...</p>';
+  openModal("progress-modal");
+
+  try {
+    // Get all enrollments for this course
+    const enrollRes = await fetch(`${BASE_URL}/enrollments/course/${courseId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const enrollData = await enrollRes.json();
+
+    // We need full enrollment objects — fetch student enrollments differently
+    // Get all students then filter by this course
+    const studentsRes = await fetch(`${BASE_URL}/students/`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const allStudents = await studentsRes.json();
+
+    // For each student, check if enrolled in this course
+    const enrollments = [];
+    await Promise.all(allStudents.map(async (student) => {
+      const sEnrollRes = await fetch(`${BASE_URL}/enrollments/student/${student.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const sEnrollments = await sEnrollRes.json();
+      const match = sEnrollments.find(e => e.course_id === courseId);
+      if (match) {
+        enrollments.push({ student, enrollment: match });
+      }
+    }));
+
+    if (enrollments.length === 0) {
+      document.getElementById("progress-courses-list").innerHTML =
+        '<p style="color:var(--text-muted); text-align:center; padding:20px;">No students enrolled in this course yet.</p>';
+      return;
+    }
+
+    document.getElementById("progress-courses-list").innerHTML = enrollments.map(({ student, enrollment }) => {
+      const initials = student.first_name[0] + student.last_name[0];
+      return `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--border-color, #e5e7eb);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="table-avatar">${initials}</div>
+            <div>
+              <div style="font-weight:600;">${student.first_name} ${student.last_name}</div>
+              <div style="font-size:0.82rem; color:var(--text-muted);">${student.email}</div>
+            </div>
+          </div>
+          ${enrollment.is_completed
+            ? `<span style="color:#16a34a; font-size:0.85rem; font-weight:600;">✓ Completed</span>`
+            : `<button class="btn-action btn-action-primary" style="font-size:0.8rem; padding:6px 14px;" onclick="markComplete('${enrollment.id}', this)">
+                Mark Complete
+               </button>`
+          }
+        </div>
+      `;
+    }).join("");
+
+  } catch (err) {
+    console.error("Error loading students:", err);
+    document.getElementById("progress-courses-list").innerHTML =
+      '<p style="color:#dc2626;">Failed to load students. Please try again.</p>';
+  }
+}
+
+async function markComplete(enrollmentId, btn) {
+  btn.disabled = true;
+  btn.textContent = "Saving...";
+
+  const res = await fetch(`${BASE_URL}/enrollments/${enrollmentId}/complete`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` }
+  });
+
+  if (res.ok) {
+    btn.replaceWith(Object.assign(document.createElement("span"), {
+      textContent: "✓ Completed",
+      style: "color:#16a34a; font-size:0.85rem; font-weight:600;"
+    }));
+  } else {
+    btn.disabled = false;
+    btn.textContent = "Mark Complete";
+    alert("Failed to mark complete. Try again.");
+  }
+}
 
       loadCourses();
 

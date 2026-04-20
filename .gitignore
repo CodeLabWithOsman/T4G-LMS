@@ -1,6 +1,5 @@
 backend/venv/
 backend/.env
-backend/t4g_lms.db
 __pycache__/
 *.pyc
 *.db
