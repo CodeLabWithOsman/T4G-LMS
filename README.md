@@ -43,6 +43,29 @@ T4G-LMS/
 │── README.md
 
 
+##  Screenshots
+
+###  Home Page
+![Home Page](./screenshots/home.png)
+
+###  About Page
+![About Page](./screenshots/about.png)
+
+###  Features Page
+![Features Page](./screenshots/features.png)
+
+###  Courses Page
+![Courses Page](./screenshots/courses.png)
+
+###  Login Page
+![Login Page](./screenshots/login.png)
+
+###  Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+###  User Profile
+![User Profile](./screenshots/userprofile.png)
+
  Authentication
 This project uses JWT (JSON Web Tokens) for secure user authentication.
  Users must log in to access protected resources.
