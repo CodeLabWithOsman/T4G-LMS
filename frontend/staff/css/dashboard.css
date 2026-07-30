@@ -161,7 +161,7 @@
 
 .stat-card.card-blue .stat-card-icon { background: var(--blue-050); color: var(--blue); }
 .stat-card.card-cyan .stat-card-icon { background: var(--cyan-050); color: var(--cyan); }
-.stat-card.card-sky .stat-card-icon { background: var(--sky-100); color: #0b8fad; }
+.stat-card.card-sky .stat-card-icon { background: var(--sky-100); color: #0891b2; }
 .stat-card.card-navy .stat-card-icon { background: var(--deep-050); color: var(--navy); }
 .stat-card.card-deep .stat-card-icon { background: var(--deep-050); color: var(--deep); }
 
@@ -618,7 +618,7 @@
 .track-badge.track-backend {
   background: var(--deep-050);
   color: var(--navy);
-  border-color: #c6cce4;
+  border-color: #bcc8d9;
 }
 
 .status-dot {
@@ -1198,7 +1198,7 @@
   gap: 20px;
   padding: 28px;
   margin-bottom: 24px;
-  background: radial-gradient(600px 240px at 8% 0%, rgba(72, 202, 228, 0.22) 0%, transparent 65%), linear-gradient(140deg, var(--navy), var(--deep));
+  background: radial-gradient(600px 240px at 8% 0%, rgba(72, 202, 228, 0.2) 0%, transparent 65%), linear-gradient(140deg, var(--navy), var(--deep));
   border-radius: var(--radius-xl);
   color: var(--white);
   box-shadow: var(--shadow-md);
@@ -1212,8 +1212,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-family: var(--font-display);
   font-size: 1.625rem;
   font-weight: 700;
@@ -1255,7 +1255,7 @@
 
 .profile-hero-info > p {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #bcc8d9;
   margin-bottom: 12px;
   overflow-wrap: anywhere;
 }
@@ -1272,7 +1272,7 @@
   gap: 6px;
   padding: 5px 12px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.75rem;
   font-weight: 600;
@@ -1289,8 +1289,8 @@
 
 .profile-badge.track {
   background: rgba(72, 202, 228, 0.2);
-  border-color: rgba(72, 202, 228, 0.42);
-  color: #d6f6fd;
+  border-color: rgba(72, 202, 228, 0.3);
+  color: #dbeafe;
 }
 
 .profile-badge.student,
@@ -1517,7 +1517,7 @@
 
 .danger-zone-head p {
   font-size: 0.8125rem;
-  color: #a3564e;
+  color: #dc2626;
 }
 
 .danger-zone-body { padding: 20px 24px; }
@@ -1562,7 +1562,7 @@
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  background: linear-gradient(90deg, transparent, #bcc8d9, transparent);
   animation: shimmer 1.4s infinite;
 }
 
