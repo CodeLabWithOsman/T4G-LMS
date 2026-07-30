@@ -142,7 +142,7 @@ body {
   font-size: 1rem;
   line-height: 1.55;
   color: var(--text);
-  background: var(--white);
+  background: var(--deep);
   min-height: 100vh;
 }
 
