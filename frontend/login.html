@@ -283,13 +283,19 @@
 
           } else {
             // Map common HTTP status codes to friendly messages
+            // The server's own message is the most accurate, so it wins.
+            // These are only fallbacks for when it does not send one.
             const statusMessages = {
               401: "Incorrect email or password. Please try again.",
-              403: "Your account has been suspended. Contact your administrator.",
-              404: "No account found with that email address.",
+              403: "You do not have access to this account.",
+              404: "Could not reach the sign-in service. Please try again shortly.",
               429: "Too many attempts. Please wait a moment and try again.",
+              500: "Something went wrong on our end. Please try again shortly.",
             };
-            const msg = statusMessages[response.status]?? data.detail?? "Login failed. Please check your credentials.";
+            const msg =
+              data.detail ||
+              statusMessages[response.status] ||
+              "Login failed. Please check your credentials.";
             showLoginError(msg);
             setButtonLoading(false);
           }

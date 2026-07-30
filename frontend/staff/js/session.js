@@ -411,3 +411,180 @@
   global.T4GSession = api;
   global.BASE_URL = BASE_URL;
 })(window);
+
+/* ==========================================================================
+   Native mobile navigation behaviour
+   --------------------------------------------------------------------------
+   Page-agnostic: it observes the drawer element rather than replacing each
+   page's own toggle handler, so existing inline scripts keep working.
+
+   Adds the behaviour a native sheet is expected to have:
+     - locks the page behind the sheet, and restores the scroll position
+     - swipe right to dismiss, tracking the finger
+     - closes on Escape, on scrim tap, and on choosing a row
+     - animates the hamburger into a close icon
+     - marks the current page's row as active
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  var drawer = document.getElementById("navbar-links");
+  var toggle = document.getElementById("nav-toggle");
+  var overlay = document.getElementById("nav-overlay");
+
+  if (!drawer) return;
+
+  var scrollY = 0;
+  var locked = false;
+
+  function isOpen() {
+    return drawer.classList.contains("active");
+  }
+
+  function lock() {
+    if (locked) return;
+    locked = true;
+    scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.classList.add("nav-open");
+    // position:fixed is the only reliable scroll lock on iOS Safari
+    document.body.style.position = "fixed";
+    document.body.style.top = -scrollY + "px";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+
+  function unlock() {
+    if (!locked) return;
+    locked = false;
+    document.body.classList.remove("nav-open");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollY);
+  }
+
+  function close() {
+    drawer.classList.remove("active");
+    if (overlay) overlay.classList.remove("active");
+    if (toggle) {
+      toggle.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    unlock();
+  }
+
+  // Keep lock state in sync with whoever toggles the class.
+  new MutationObserver(function () {
+    if (isOpen()) {
+      lock();
+      if (toggle) toggle.setAttribute("aria-expanded", "true");
+    } else {
+      unlock();
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
+    }
+  }).observe(drawer, { attributes: true, attributeFilter: ["class"] });
+
+  // Escape closes, matching platform dismissal.
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) close();
+  });
+
+  // Choosing a row dismisses the sheet.
+  drawer.addEventListener("click", function (e) {
+    var link = e.target.closest("a");
+    if (link && !link.classList.contains("sidebar-brand") && isOpen()) {
+      close();
+    }
+  });
+
+  if (overlay) {
+    overlay.addEventListener("click", close);
+  }
+
+  /* ---- Swipe right to dismiss ---------------------------------------- */
+  var startX = 0;
+  var startY = 0;
+  var currentX = 0;
+  var dragging = false;
+  var horizontal = null;
+
+  drawer.addEventListener(
+    "touchstart",
+    function (e) {
+      if (!isOpen() || e.touches.length !== 1) return;
+      startX = currentX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      dragging = true;
+      horizontal = null;
+      drawer.style.transition = "none";
+    },
+    { passive: true }
+  );
+
+  drawer.addEventListener(
+    "touchmove",
+    function (e) {
+      if (!dragging) return;
+      currentX = e.touches[0].clientX;
+      var dx = currentX - startX;
+      var dy = e.touches[0].clientY - startY;
+
+      // Decide once whether this gesture is a swipe or a scroll.
+      if (horizontal === null) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        horizontal = Math.abs(dx) > Math.abs(dy);
+      }
+      if (!horizontal) return;
+
+      // Only track rightward movement, with resistance past the edge.
+      var offset = dx > 0 ? dx : dx * 0.2;
+      drawer.style.transform = "translate3d(" + offset + "px, 0, 0)";
+      if (overlay) {
+        var width = drawer.offsetWidth || 1;
+        overlay.style.opacity = String(
+          Math.max(0, 1 - Math.max(0, dx) / width)
+        );
+      }
+    },
+    { passive: true }
+  );
+
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    drawer.style.transition = "";
+    drawer.style.transform = "";
+    if (overlay) overlay.style.opacity = "";
+
+    // Past a third of the width, or any decisive flick, dismisses it.
+    if (horizontal && currentX - startX > (drawer.offsetWidth || 300) / 3) {
+      close();
+    }
+    horizontal = null;
+  }
+
+  drawer.addEventListener("touchend", endDrag, { passive: true });
+  drawer.addEventListener("touchcancel", endDrag, { passive: true });
+
+  /* ---- Mark the current page's row ----------------------------------- */
+  try {
+    var here = location.pathname.split("/").pop() || "index.html";
+    var rows = drawer.querySelectorAll("a[href]");
+    for (var i = 0; i < rows.length; i++) {
+      var href = (rows[i].getAttribute("href") || "").split("/").pop();
+      if (href && href === here) {
+        rows[i].classList.add("active-link");
+      }
+    }
+  } catch (err) {
+    /* non-critical */
+  }
+
+  // Release the lock if the viewport grows back to desktop while open.
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900 && isOpen()) close();
+  });
+})();

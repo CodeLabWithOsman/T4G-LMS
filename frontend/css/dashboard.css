@@ -161,7 +161,7 @@
 
 .stat-card.card-blue .stat-card-icon { background: var(--blue-050); color: var(--blue); }
 .stat-card.card-cyan .stat-card-icon { background: var(--cyan-050); color: var(--cyan); }
-.stat-card.card-sky .stat-card-icon { background: var(--sky-100); color: #0b8fad; }
+.stat-card.card-sky .stat-card-icon { background: var(--sky-100); color: #0891b2; }
 .stat-card.card-navy .stat-card-icon { background: var(--deep-050); color: var(--navy); }
 .stat-card.card-deep .stat-card-icon { background: var(--deep-050); color: var(--deep); }
 
@@ -618,7 +618,7 @@
 .track-badge.track-backend {
   background: var(--deep-050);
   color: var(--navy);
-  border-color: #c6cce4;
+  border-color: #bcc8d9;
 }
 
 .status-dot {
@@ -1290,7 +1290,7 @@
 .profile-badge.track {
   background: rgba(72, 202, 228, 0.2);
   border-color: rgba(72, 202, 228, 0.42);
-  color: #d6f6fd;
+  color: #dbeafe;
 }
 
 .profile-badge.student,
@@ -1517,7 +1517,7 @@
 
 .danger-zone-head p {
   font-size: 0.8125rem;
-  color: #a3564e;
+  color: #dc2626;
 }
 
 .danger-zone-body { padding: 20px 24px; }
