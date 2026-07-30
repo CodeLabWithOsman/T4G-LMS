@@ -1,7 +1,18 @@
-from sqlalchemy import Column, String, Text, DateTime
-from database import Base
+"""Announcement model.
+
+Fix applied: timezone-aware default (datetime.utcnow is deprecated).
+"""
+
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
+
+from sqlalchemy import Column, DateTime, String, Text
+
+from database import Base
+
+
+def _utcnow():
+    return datetime.now(timezone.utc)
 
 
 class Announcement(Base):
@@ -11,4 +22,4 @@ class Announcement(Base):
     title = Column(String(200), nullable=False)
     message = Column(Text, nullable=False)
     posted_by = Column(String(100), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=_utcnow)
