@@ -101,7 +101,7 @@ const Session = {
  *   const res = await apiFetch(`${BASE_URL}/enrollments/student/${id}`);
  *   const data = await res.json();
  */
-const BASE_URL = "https://t4g-lms-production.up.railway.app";
+const BASE_URL = "https://t4g-lms-backend.fly.dev";
 
 async function apiFetch(url, options = {}) {
   const token = Session.getToken();
