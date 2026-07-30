@@ -588,3 +588,57 @@
     if (window.innerWidth > 900 && isOpen()) close();
   });
 })();
+
+
+/* ==========================================================================
+   Drawer close button
+   --------------------------------------------------------------------------
+   Adds a visible X to the drawer header. The scrim tap, the swipe and the
+   Escape key already dismissed the sheet, but a native drawer also offers an
+   explicit control, and it is the only discoverable one on a touch device.
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  function init() {
+    var drawer = document.getElementById("navbar-links");
+    if (!drawer) return;
+    if (drawer.querySelector(".drawer-close")) return;
+
+    var brand = drawer.querySelector(".sidebar-brand");
+    if (!brand) return;
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "drawer-close";
+    btn.setAttribute("aria-label", "Close menu");
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+      '<path d="M18 6 6 18M6 6l12 12"></path>' +
+      "</svg>";
+
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var toggle = document.getElementById("nav-toggle");
+      var overlay = document.getElementById("nav-overlay");
+
+      drawer.classList.remove("active");
+      if (overlay) overlay.classList.remove("active");
+      if (toggle) {
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      // The scroll lock is released by the observer in the drawer script.
+    });
+
+    brand.appendChild(btn);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
