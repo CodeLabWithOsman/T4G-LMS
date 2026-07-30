@@ -1,44 +1,36 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Profile · Tech4Girls LMS</title>
-    <meta name="description" content="Manage your profile and account settings." />
-    <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <style>
-      /* ── Profile Page Layout ── */
-      .profile-main {
+ <head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>My Profile · Tech4Girls LMS</title>
+ <meta name="description" content="Manage your profile and account settings." />
+ <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="css/style.css" />
+ <link rel="stylesheet" href="css/dashboard.css" />
+ <style>
+      /* ── Profile Page Layout ── */.profile-main {
         max-width: 900px;
         margin: 0 auto;
         padding: 32px 24px 64px;
-      }
-
-      .profile-page-header {
+      }.profile-page-header {
         margin-bottom: 32px;
-      }
-
-      .profile-page-header h1 {
+      }.profile-page-header h1 {
         font-family: 'Outfit', sans-serif;
         font-size: 1.75rem;
         font-weight: 700;
         color: var(--text-primary, #111827);
         margin: 0 0 4px;
-      }
-
-      .profile-page-header p {
+      }.profile-page-header p {
         color: var(--text-muted, #6b7280);
         font-size: 0.925rem;
         margin: 0;
       }
 
-      /* ── Profile Card ── */
-      .profile-hero-card {
+      /* ── Profile Card ── */.profile-hero-card {
         background: #fff;
         border: 1px solid var(--border, #e5e7eb);
         border-radius: 16px;
@@ -48,14 +40,10 @@
         gap: 28px;
         margin-bottom: 24px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      }
-
-      .profile-avatar-wrap {
+      }.profile-avatar-wrap {
         position: relative;
         flex-shrink: 0;
-      }
-
-      .profile-avatar {
+      }.profile-avatar {
         width: 88px;
         height: 88px;
         border-radius: 50%;
@@ -71,9 +59,7 @@
         border: 3px solid #fff;
         box-shadow: 0 0 0 2px #e0e7ff;
         user-select: none;
-      }
-
-      .profile-avatar-badge {
+      }.profile-avatar-badge {
         position: absolute;
         bottom: 2px;
         right: 2px;
@@ -82,29 +68,21 @@
         background: #10b981;
         border-radius: 50%;
         border: 2px solid #fff;
-      }
-
-      .profile-hero-info h2 {
+      }.profile-hero-info h2 {
         font-family: 'Outfit', sans-serif;
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--text-primary, #111827);
         margin: 0 0 4px;
-      }
-
-      .profile-hero-info p {
+      }.profile-hero-info p {
         color: var(--text-muted, #6b7280);
         font-size: 0.875rem;
         margin: 0 0 12px;
-      }
-
-      .profile-badges {
+      }.profile-badges {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
-      }
-
-      .profile-badge {
+      }.profile-badge {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -112,32 +90,23 @@
         border-radius: 20px;
         font-size: 0.75rem;
         font-weight: 600;
-      }
-
-      .profile-badge.student {
+      }.profile-badge.student {
         background: #ede9fe;
         color: #7c3aed;
-      }
-
-      .profile-badge.track {
+      }.profile-badge.track {
         background: #e0f2fe;
         color: #0369a1;
-      }
-
-      .profile-badge.joined {
+      }.profile-badge.joined {
         background: #f0fdf4;
         color: #15803d;
       }
 
-      /* ── Tabs ── */
-      .profile-tabs {
+      /* ── Tabs ── */.profile-tabs {
         display: flex;
         gap: 4px;
         border-bottom: 2px solid var(--border, #e5e7eb);
         margin-bottom: 24px;
-      }
-
-      .profile-tab {
+      }.profile-tab {
         padding: 10px 18px;
         font-size: 0.875rem;
         font-weight: 600;
@@ -152,50 +121,36 @@
         align-items: center;
         gap: 7px;
         font-family: inherit;
-      }
-
-      .profile-tab:hover {
+      }.profile-tab:hover {
         color: var(--text-primary, #111827);
-      }
-
-      .profile-tab.active {
+      }.profile-tab.active {
         color: #6366f1;
         border-bottom-color: #6366f1;
-      }
-
-      .profile-tab svg {
+      }.profile-tab svg {
         width: 15px;
         height: 15px;
       }
 
-      /* ── Tab Panels ── */
-      .profile-panel {
+      /* ── Tab Panels ── */.profile-panel {
         display: none;
-      }
-
-      .profile-panel.active {
+      }.profile-panel.active {
         display: block;
       }
 
-      /* ── Section Card ── */
-      .profile-section-card {
+      /* ── Section Card ── */.profile-section-card {
         background: #fff;
         border: 1px solid var(--border, #e5e7eb);
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 20px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      }
-
-      .profile-section-head {
+      }.profile-section-head {
         padding: 20px 28px 16px;
         border-bottom: 1px solid var(--border, #f3f4f6);
         display: flex;
         align-items: center;
         gap: 10px;
-      }
-
-      .profile-section-head svg {
+      }.profile-section-head svg {
         width: 18px;
         height: 18px;
         color: #6366f1;
@@ -205,52 +160,37 @@
         stroke-linecap: round;
         stroke-linejoin: round;
         flex-shrink: 0;
-      }
-
-      .profile-section-head h3 {
+      }.profile-section-head h3 {
         font-family: 'Outfit', sans-serif;
         font-size: 1rem;
         font-weight: 700;
         color: var(--text-primary, #111827);
         margin: 0;
-      }
-
-      .profile-section-head p {
+      }.profile-section-head p {
         font-size: 0.8rem;
         color: var(--text-muted, #6b7280);
         margin: 2px 0 0;
-      }
-
-      .profile-section-body {
+      }.profile-section-body {
         padding: 24px 28px;
       }
 
-      /* ── Form Grid ── */
-      .profile-form-grid {
+      /* ── Form Grid ── */.profile-form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 18px;
-      }
-
-      .profile-form-grid .full {
+      }.profile-form-grid.full {
         grid-column: 1 / -1;
-      }
-
-      .profile-field {
+      }.profile-field {
         display: flex;
         flex-direction: column;
         gap: 6px;
-      }
-
-      .profile-label {
+      }.profile-label {
         font-size: 0.8rem;
         font-weight: 600;
         color: var(--text-secondary, #374151);
         text-transform: uppercase;
         letter-spacing: 0.04em;
-      }
-
-      .profile-input {
+      }.profile-input {
         padding: 10px 14px;
         border: 1.5px solid var(--border, #e5e7eb);
         border-radius: 10px;
@@ -260,68 +200,50 @@
         background: #fff;
         transition: border-color 0.2s, box-shadow 0.2s;
         outline: none;
-      }
-
-      .profile-input:focus {
+      }.profile-input:focus {
         border-color: #6366f1;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-      }
-
-      .profile-input:disabled {
+      }.profile-input:disabled {
         background: #f9fafb;
         color: #9ca3af;
         cursor: not-allowed;
-      }
-
-      .profile-input-hint {
+      }.profile-input-hint {
         font-size: 0.75rem;
         color: var(--text-muted, #9ca3af);
       }
 
-      /* ── Read-only Info Row ── */
-      .profile-info-row {
+      /* ── Read-only Info Row ── */.profile-info-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 14px 0;
         border-bottom: 1px solid #f3f4f6;
-      }
-
-      .profile-info-row:last-child {
+      }.profile-info-row:last-child {
         border-bottom: none;
         padding-bottom: 0;
-      }
-
-      .profile-info-row:first-child {
+      }.profile-info-row:first-child {
         padding-top: 0;
-      }
-
-      .profile-info-label {
+      }.profile-info-label {
         font-size: 0.8rem;
         font-weight: 600;
         color: var(--text-muted, #6b7280);
         text-transform: uppercase;
         letter-spacing: 0.04em;
         min-width: 140px;
-      }
-
-      .profile-info-value {
+      }.profile-info-value {
         font-size: 0.9rem;
         color: var(--text-primary, #111827);
         font-weight: 500;
         flex: 1;
       }
 
-      /* ── Actions ── */
-      .profile-form-actions {
+      /* ── Actions ── */.profile-form-actions {
         display: flex;
         gap: 10px;
         margin-top: 24px;
         padding-top: 20px;
         border-top: 1px solid #f3f4f6;
-      }
-
-      .btn-profile-save {
+      }.btn-profile-save {
         display: inline-flex;
         align-items: center;
         gap: 7px;
@@ -335,20 +257,14 @@
         font-family: inherit;
         cursor: pointer;
         transition: opacity 0.2s, transform 0.15s;
-      }
-
-      .btn-profile-save:hover {
+      }.btn-profile-save:hover {
         opacity: 0.9;
         transform: translateY(-1px);
-      }
-
-      .btn-profile-save:disabled {
+      }.btn-profile-save:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         transform: none;
-      }
-
-      .btn-profile-save svg {
+      }.btn-profile-save svg {
         width: 15px;
         height: 15px;
         stroke: currentColor;
@@ -356,9 +272,7 @@
         stroke-width: 2.5;
         stroke-linecap: round;
         stroke-linejoin: round;
-      }
-
-      .btn-profile-cancel {
+      }.btn-profile-cancel {
         display: inline-flex;
         align-items: center;
         gap: 7px;
@@ -372,64 +286,48 @@
         font-family: inherit;
         cursor: pointer;
         transition: background 0.2s;
-      }
-
-      .btn-profile-cancel:hover {
+      }.btn-profile-cancel:hover {
         background: #e5e7eb;
       }
 
-      /* ── Password Strength ── */
-      .password-strength {
+      /* ── Password Strength ── */.password-strength {
         margin-top: 8px;
-      }
-
-      .strength-bar {
+      }.strength-bar {
         display: flex;
         gap: 4px;
         margin-bottom: 5px;
-      }
-
-      .strength-seg {
+      }.strength-seg {
         height: 4px;
         flex: 1;
         border-radius: 4px;
         background: #e5e7eb;
         transition: background 0.3s;
-      }
-
-      .strength-label {
+      }.strength-label {
         font-size: 0.75rem;
         font-weight: 600;
         color: #9ca3af;
       }
 
-      /* ── Danger Zone ── */
-      .danger-zone-card {
+      /* ── Danger Zone ── */.danger-zone-card {
         background: #fff;
         border: 1.5px solid #fca5a5;
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 20px;
-      }
-
-      .danger-zone-head {
+      }.danger-zone-head {
         padding: 18px 28px;
         background: #fef2f2;
         border-bottom: 1px solid #fca5a5;
         display: flex;
         align-items: center;
         gap: 10px;
-      }
-
-      .danger-zone-head h3 {
+      }.danger-zone-head h3 {
         font-family: 'Outfit', sans-serif;
         font-size: 0.95rem;
         font-weight: 700;
         color: #dc2626;
         margin: 0;
-      }
-
-      .danger-zone-head svg {
+      }.danger-zone-head svg {
         width: 17px;
         height: 17px;
         color: #dc2626;
@@ -438,33 +336,23 @@
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
-      }
-
-      .danger-zone-body {
+      }.danger-zone-body {
         padding: 20px 28px;
-      }
-
-      .danger-item {
+      }.danger-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 16px;
-      }
-
-      .danger-item-info h4 {
+      }.danger-item-info h4 {
         font-size: 0.9rem;
         font-weight: 600;
         color: #111827;
         margin: 0 0 3px;
-      }
-
-      .danger-item-info p {
+      }.danger-item-info p {
         font-size: 0.8rem;
         color: #6b7280;
         margin: 0;
-      }
-
-      .btn-danger {
+      }.btn-danger {
         display: inline-flex;
         align-items: center;
         gap: 7px;
@@ -479,14 +367,10 @@
         cursor: pointer;
         white-space: nowrap;
         transition: background 0.2s, border-color 0.2s;
-      }
-
-      .btn-danger:hover {
+      }.btn-danger:hover {
         background: #fef2f2;
         border-color: #dc2626;
-      }
-
-      .btn-danger svg {
+      }.btn-danger svg {
         width: 14px;
         height: 14px;
         stroke: currentColor;
@@ -496,8 +380,7 @@
         stroke-linejoin: round;
       }
 
-      /* ── Inline error ── */
-      .field-error {
+      /* ── Inline error ── */.field-error {
         font-size: 0.78rem;
         color: #dc2626;
         font-weight: 500;
@@ -507,472 +390,479 @@
       }
 
       /* ── Responsive ── */
-      @media (max-width: 640px) {
-        .profile-hero-card {
+      @media (max-width: 640px) {.profile-hero-card {
           flex-direction: column;
           text-align: center;
           padding: 24px 20px;
-        }
-
-        .profile-badges {
+        }.profile-badges {
           justify-content: center;
-        }
-
-        .profile-form-grid {
+        }.profile-form-grid {
           grid-template-columns: 1fr;
-        }
-
-        .profile-section-body {
+        }.profile-section-body {
           padding: 20px;
-        }
-
-        .profile-section-head {
+        }.profile-section-head {
           padding: 16px 20px 14px;
-        }
-
-        .danger-item {
+        }.danger-item {
           flex-direction: column;
           align-items: flex-start;
-        }
-
-        .profile-info-label {
+        }.profile-info-label {
           min-width: 100px;
-        }
-
-        .profile-main {
+        }.profile-main {
           padding: 20px 16px 48px;
         }
       }
-    </style>
-  </head>
-  <body class="dashboard-page">
+ </style>
+ <!-- T4G-AUTH-GUARD: runs before first paint. Do not move below the stylesheets. -->
+ <script>
+      document.documentElement.className += ' auth-pending';
+      window.__T4G_ROLE__ = 'student';
+      // Safety net: never leave the page permanently hidden.
+      setTimeout(function () {
+        document.documentElement.classList.remove('auth-pending');
+      }, 4000);
+ </script>
+ <noscript>
+ <style>
+        html.auth-pending body { visibility: visible!important; }
+ </style>
+ </noscript>
+ <script src="js/session.js"></script>
+ <script>
+      if (window.Session) {
+        Session.requireAuth();
+      } else {
+        document.documentElement.classList.remove('auth-pending');
+      }
+ </script>
+</head>
+ <body class="dashboard-page">
 
-    <nav class="navbar" id="navbar">
-      <div class="navbar-inner">
-        <a href="student-dashboard.html" class="navbar-logo" id="logo-link">
-          <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-          <span class="logo-text">Tech4Girls</span>
-        </a>
+ <nav class="navbar" id="navbar">
+ <div class="navbar-inner">
+ <a href="student-dashboard.html" class="navbar-logo" id="logo-link">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <span class="logo-text">Tech4Girls</span>
+ </a>
 
-        <ul class="navbar-links" id="navbar-links">
-          <li class="sidebar-brand">
-            <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-            <span>Tech4Girls</span>
-          </li>
+ <ul class="navbar-links" id="navbar-links">
+ <li class="sidebar-brand">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <span>Tech4Girls</span>
+ </li>
 
-          <li class="sidebar-section-label">Menu</li>
-          <li>
-            <a href="student-dashboard.html" id="nav-home">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
+ <li class="sidebar-section-label">Menu</li>
+ <li>
+ <a href="student-dashboard.html" id="nav-home">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+ <polyline points="9 22 9 12 15 12 15 22" />
+ </svg>
               Home
-            </a>
-          </li>
-          <li>
-            <a href="student-dashboard.html#my-courses" id="nav-courses">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-              </svg>
+ </a>
+ </li>
+ <li>
+ <a href="student-dashboard.html#my-courses" id="nav-courses">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+ <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+ </svg>
                My Courses
-            </a>
-          </li>
-          <li>
-            <a href="student-dashboard.html#recent-materials" id="nav-materials">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
+ </a>
+ </li>
+ <li>
+ <a href="student-dashboard.html#recent-materials" id="nav-materials">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+ <polyline points="14 2 14 8 20 8" />
+ <line x1="16" y1="13" x2="8" y2="13" />
+ <line x1="16" y1="17" x2="8" y2="17" />
+ </svg>
               Course Materials
-            </a>
-          </li>
+ </a>
+ </li>
 
-          <li class="sidebar-divider"></li>
+ <li class="sidebar-divider"></li>
 
-          <li>
-            <a href="profile.html" class="active-link" id="nav-profile">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
+ <li>
+ <a href="profile.html" class="active-link" id="nav-profile">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+ <circle cx="12" cy="7" r="4"/>
+ </svg>
               My Profile
-            </a>
-          </li>
+ </a>
+ </li>
 
-          <li class="sidebar-divider"></li>
-        </ul>
-        <div class="notif-bell-wrap" id="notif-bell-wrap">
-  <button class="notif-bell" id="notif-bell-btn" aria-label="Notifications">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+ <li class="sidebar-divider"></li>
+ </ul>
+ <div class="notif-bell-wrap" id="notif-bell-wrap">
+ <button class="notif-bell" id="notif-bell-btn" aria-label="Notifications">
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" stroke-width="2.5"
       stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-    </svg>
-    <span class="notif-badge" id="notif-badge" style="display:none;">0</span>
-  </button>
-  <div class="notif-dropdown" id="notif-dropdown">
-    <div class="notif-dropdown-head">
-      <span>Notifications</span>
-      <button id="mark-all-read-btn">Mark all as read</button>
-    </div>
-    <div class="notif-list" id="notif-list">
-      <div class="notif-empty">No notifications yet</div>
-    </div>
-  </div>
+ <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+ <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+ </svg>
+ <span class="notif-badge" id="notif-badge" style="display:none;">0</span>
+ </button>
+ <div class="notif-dropdown" id="notif-dropdown">
+ <div class="notif-dropdown-head">
+ <span>Notifications</span>
+ <button id="mark-all-read-btn">Mark all as read</button>
+ </div>
+ <div class="notif-list" id="notif-list">
+ <div class="notif-empty">No notifications yet</div>
+ </div>
+ </div>
 </div>
 
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
-      <div class="nav-overlay" id="nav-overlay"></div>
-    </nav>
+ <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ </button>
+ </div>
+ <div class="nav-overlay" id="nav-overlay"></div>
+ </nav>
 
-    <main class="dashboard-main profile-main" id="dashboard-main">
+ <main class="dashboard-main profile-main" id="dashboard-main">
 
-      <!-- Page Header -->
-      <div class="profile-page-header">
-        <h1>My Profile</h1>
-        <p>Manage your personal information and account settings</p>
-      </div>
+ <!-- Page Header -->
+ <div class="profile-page-header">
+ <h1>My Profile</h1>
+ <p>Manage your personal information and account settings</p>
+ </div>
 
-      <!-- Hero Card -->
-      <div class="profile-hero-card">
-        <div class="profile-avatar-wrap">
-          <div class="profile-avatar" id="profile-avatar-initials">--</div>
-          <div class="profile-avatar-badge"></div>
-        </div>
-        <div class="profile-hero-info">
-          <h2 id="profile-full-name">Loading...</h2>
-          <p id="profile-email-display">—</p>
-          <div class="profile-badges">
-            <span class="profile-badge student">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 10 3 12 0v-5"/></svg>
+ <!-- Hero Card -->
+ <div class="profile-hero-card">
+ <div class="profile-avatar-wrap">
+ <div class="profile-avatar" id="profile-avatar-initials">--</div>
+ <div class="profile-avatar-badge"></div>
+ </div>
+ <div class="profile-hero-info">
+ <h2 id="profile-full-name">Loading...</h2>
+ <p id="profile-email-display">—</p>
+ <div class="profile-badges">
+ <span class="profile-badge student">
+ <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 10 3 12 0v-5"/></svg>
               Student
-            </span>
-            <span class="profile-badge track" id="profile-track-badge">— Track</span>
-            <span class="profile-badge joined" id="profile-joined-badge">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+ </span>
+ <span class="profile-badge track" id="profile-track-badge">— Track</span>
+ <span class="profile-badge joined" id="profile-joined-badge">
+ <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Joined 2026
-            </span>
-          </div>
-        </div>
-      </div>
+ </span>
+ </div>
+ </div>
+ </div>
 
-      <!-- Tabs -->
-      <div class="profile-tabs">
-        <button class="profile-tab active" data-tab="info">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+ <!-- Tabs -->
+ <div class="profile-tabs">
+ <button class="profile-tab active" data-tab="info">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Personal Info
-        </button>
-        <button class="profile-tab" data-tab="security">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+ </button>
+ <button class="profile-tab" data-tab="security">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           Security
-        </button>
-        <button class="profile-tab" data-tab="account">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+ </button>
+ <button class="profile-tab" data-tab="account">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0.33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           Account
-        </button>
-      </div>
+ </button>
+ </div>
 
-      <!-- ── Tab: Personal Info ── -->
-      <div class="profile-panel active" id="tab-info">
-        <div class="profile-section-card">
-          <div class="profile-section-head">
-            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <div>
-              <h3>Personal Information</h3>
-              <p>Your basic profile details</p>
-            </div>
-          </div>
-          <div class="profile-section-body">
-            <form id="profile-info-form">
-              <div class="profile-form-grid">
-                <div class="profile-field">
-                  <label class="profile-label" for="field-firstname">First Name</label>
-                  <input class="profile-input" type="text" id="field-firstname" placeholder="First name" />
-                </div>
-                <div class="profile-field">
-                  <label class="profile-label" for="field-lastname">Last Name</label>
-                  <input class="profile-input" type="text" id="field-lastname" placeholder="Last name" />
-                </div>
-                <div class="profile-field full">
-                  <label class="profile-label" for="field-email">Email Address</label>
-                  <input class="profile-input" type="email" id="field-email" placeholder="Email address" disabled />
-                  <span class="profile-input-hint">Email cannot be changed. Contact your admin if needed.</span>
-                </div>
-              </div>
-              <div class="profile-form-actions">
-                <button type="submit" class="btn-profile-save" id="save-info-btn">
-                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+ <!-- ── Tab: Personal Info ── -->
+ <div class="profile-panel active" id="tab-info">
+ <div class="profile-section-card">
+ <div class="profile-section-head">
+ <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+ <div>
+ <h3>Personal Information</h3>
+ <p>Your basic profile details</p>
+ </div>
+ </div>
+ <div class="profile-section-body">
+ <form id="profile-info-form">
+ <div class="profile-form-grid">
+ <div class="profile-field">
+ <label class="profile-label" for="field-firstname">First Name</label>
+ <input class="profile-input" type="text" id="field-firstname" placeholder="First name" />
+ </div>
+ <div class="profile-field">
+ <label class="profile-label" for="field-lastname">Last Name</label>
+ <input class="profile-input" type="text" id="field-lastname" placeholder="Last name" />
+ </div>
+ <div class="profile-field full">
+ <label class="profile-label" for="field-email">Email Address</label>
+ <input class="profile-input" type="email" id="field-email" placeholder="Email address" disabled />
+ <span class="profile-input-hint">Email cannot be changed. Contact your admin if needed.</span>
+ </div>
+ </div>
+ <div class="profile-form-actions">
+ <button type="submit" class="btn-profile-save" id="save-info-btn">
+ <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                   Save Changes
-                </button>
-                <button type="button" class="btn-profile-cancel" id="cancel-info-btn">Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
+ </button>
+ <button type="button" class="btn-profile-cancel" id="cancel-info-btn">Cancel</button>
+ </div>
+ </form>
+ </div>
+ </div>
 
-        <!-- Read-only program info -->
-        <div class="profile-section-card">
-          <div class="profile-section-head">
-            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 10 3 12 0v-5"/></svg>
-            <div>
-              <h3>Program Information</h3>
-              <p>Details assigned by your admin</p>
-            </div>
-          </div>
-          <div class="profile-section-body">
-            <div class="profile-info-row">
-              <span class="profile-info-label">Track</span>
-              <span class="profile-info-value" id="info-track">—</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Student ID</span>
-              <span class="profile-info-value" id="info-id">—</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Role</span>
-              <span class="profile-info-value">Student</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Status</span>
-              <span class="profile-info-value">
-                <span style="display:inline-flex;align-items:center;gap:5px;color:#15803d;font-weight:600;">
-                  <span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
+ <!-- Read-only program info -->
+ <div class="profile-section-card">
+ <div class="profile-section-head">
+ <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 10 3 12 0v-5"/></svg>
+ <div>
+ <h3>Program Information</h3>
+ <p>Details assigned by your admin</p>
+ </div>
+ </div>
+ <div class="profile-section-body">
+ <div class="profile-info-row">
+ <span class="profile-info-label">Track</span>
+ <span class="profile-info-value" id="info-track">—</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Student ID</span>
+ <span class="profile-info-value" id="info-id">—</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Role</span>
+ <span class="profile-info-value">Student</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Status</span>
+ <span class="profile-info-value">
+ <span style="display:inline-flex;align-items:center;gap:5px;color:#15803d;font-weight:600;">
+ <span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
                   Active
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+ </span>
+ </span>
+ </div>
+ </div>
+ </div>
+ </div>
 
-      <!-- ── Tab: Security ── -->
-      <div class="profile-panel" id="tab-security">
-        <div class="profile-section-card">
-          <div class="profile-section-head">
-            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <div>
-              <h3>Change Password</h3>
-              <p>Keep your account secure with a strong password</p>
-            </div>
-          </div>
-          <div class="profile-section-body">
-            <form id="security-form">
-              <div class="profile-form-grid">
-                <div class="profile-field full">
-                  <label class="profile-label" for="sec-current">Current Password</label>
-                  <div style="position:relative;">
-                    <input class="profile-input" type="password" id="sec-current" placeholder="Enter your current password" style="padding-right:44px;" />
-                    <button type="button" onclick="togglePwd('sec-current',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="profile-field">
-                  <label class="profile-label" for="sec-new">New Password</label>
-                  <div style="position:relative;">
-                    <input class="profile-input" type="password" id="sec-new" placeholder="New password" oninput="checkStrength(this.value)" style="padding-right:44px;" />
-                    <button type="button" onclick="togglePwd('sec-new',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                  </div>
-                  <div class="password-strength">
-                    <div class="strength-bar">
-                      <div class="strength-seg" id="seg1"></div>
-                      <div class="strength-seg" id="seg2"></div>
-                      <div class="strength-seg" id="seg3"></div>
-                      <div class="strength-seg" id="seg4"></div>
-                    </div>
-                    <span class="strength-label" id="strength-label">Enter a password</span>
-                  </div>
-                </div>
-                <div class="profile-field">
-                  <label class="profile-label" for="sec-confirm">Confirm New Password</label>
-                  <div style="position:relative;">
-                    <input class="profile-input" type="password" id="sec-confirm" placeholder="Confirm new password" style="padding-right:44px;" />
-                    <button type="button" onclick="togglePwd('sec-confirm',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div id="security-error" style="display:none;" class="field-error" style="margin-top:12px;"></div>
-              <div class="profile-form-actions">
-                <button type="submit" class="btn-profile-save" id="save-security-btn">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+ <!-- ── Tab: Security ── -->
+ <div class="profile-panel" id="tab-security">
+ <div class="profile-section-card">
+ <div class="profile-section-head">
+ <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+ <div>
+ <h3>Change Password</h3>
+ <p>Keep your account secure with a strong password</p>
+ </div>
+ </div>
+ <div class="profile-section-body">
+ <form id="security-form">
+ <div class="profile-form-grid">
+ <div class="profile-field full">
+ <label class="profile-label" for="sec-current">Current Password</label>
+ <div style="position:relative;">
+ <input class="profile-input" type="password" id="sec-current" placeholder="Enter your current password" style="padding-right:44px;" />
+ <button type="button" onclick="togglePwd('sec-current',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+ </button>
+ </div>
+ </div>
+ <div class="profile-field">
+ <label class="profile-label" for="sec-new">New Password</label>
+ <div style="position:relative;">
+ <input class="profile-input" type="password" id="sec-new" placeholder="New password" oninput="checkStrength(this.value)" style="padding-right:44px;" />
+ <button type="button" onclick="togglePwd('sec-new',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+ </button>
+ </div>
+ <div class="password-strength">
+ <div class="strength-bar">
+ <div class="strength-seg" id="seg1"></div>
+ <div class="strength-seg" id="seg2"></div>
+ <div class="strength-seg" id="seg3"></div>
+ <div class="strength-seg" id="seg4"></div>
+ </div>
+ <span class="strength-label" id="strength-label">Enter a password</span>
+ </div>
+ </div>
+ <div class="profile-field">
+ <label class="profile-label" for="sec-confirm">Confirm New Password</label>
+ <div style="position:relative;">
+ <input class="profile-input" type="password" id="sec-confirm" placeholder="Confirm new password" style="padding-right:44px;" />
+ <button type="button" onclick="togglePwd('sec-confirm',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+ </button>
+ </div>
+ </div>
+ </div>
+ <div id="security-error" style="display:none;" class="field-error" style="margin-top:12px;"></div>
+ <div class="profile-form-actions">
+ <button type="submit" class="btn-profile-save" id="save-security-btn">
+ <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                   Update Password
-                </button>
-                <button type="button" class="btn-profile-cancel" onclick="document.getElementById('security-form').reset(); clearStrength();">Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
+ </button>
+ <button type="button" class="btn-profile-cancel" onclick="document.getElementById('security-form').reset(); clearStrength();">Cancel</button>
+ </div>
+ </form>
+ </div>
+ </div>
 
-        <!-- Password rules -->
-        <div class="profile-section-card">
-          <div class="profile-section-head">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <div>
-              <h3>Password Requirements</h3>
-              <p>Your password must meet all of these</p>
-            </div>
-          </div>
-          <div class="profile-section-body">
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div id="rule-length" class="profile-info-row" style="padding:8px 0; border:none;">
-                <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
-                  <span id="rule-length-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;">✗</span>
+ <!-- Password rules -->
+ <div class="profile-section-card">
+ <div class="profile-section-head">
+ <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+ <div>
+ <h3>Password Requirements</h3>
+ <p>Your password must meet all of these</p>
+ </div>
+ </div>
+ <div class="profile-section-body">
+ <div style="display:flex;flex-direction:column;gap:10px;">
+ <div id="rule-length" class="profile-info-row" style="padding:8px 0; border:none;">
+ <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
+ <span id="rule-length-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;"></span>
                   At least 8 characters
-                </span>
-              </div>
-              <div id="rule-upper" class="profile-info-row" style="padding:8px 0; border:none;">
-                <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
-                  <span id="rule-upper-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;">✗</span>
+ </span>
+ </div>
+ <div id="rule-upper" class="profile-info-row" style="padding:8px 0; border:none;">
+ <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
+ <span id="rule-upper-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;"></span>
                   One uppercase letter
-                </span>
-              </div>
-              <div id="rule-number" class="profile-info-row" style="padding:8px 0; border:none;">
-                <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
-                  <span id="rule-number-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;">✗</span>
+ </span>
+ </div>
+ <div id="rule-number" class="profile-info-row" style="padding:8px 0; border:none;">
+ <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
+ <span id="rule-number-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;"></span>
                   One number
-                </span>
-              </div>
-              <div id="rule-default" class="profile-info-row" style="padding:8px 0; border:none;">
-                <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
-                  <span id="rule-default-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;">✗</span>
+ </span>
+ </div>
+ <div id="rule-default" class="profile-info-row" style="padding:8px 0; border:none;">
+ <span style="display:flex;align-items:center;gap:8px;font-size:0.875rem;color:#6b7280;">
+ <span id="rule-default-icon" style="width:18px;height:18px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;"></span>
                   Not the default password (temp1234)
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+ </span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-      <!-- ── Tab: Account ── -->
-      <div class="profile-panel" id="tab-account">
-        <div class="profile-section-card">
-          <div class="profile-section-head">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <div>
-              <h3>Account Overview</h3>
-              <p>Your account details at a glance</p>
-            </div>
-          </div>
-          <div class="profile-section-body">
-            <div class="profile-info-row">
-              <span class="profile-info-label">Full Name</span>
-              <span class="profile-info-value" id="acct-name">—</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Email</span>
-              <span class="profile-info-value" id="acct-email">—</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Track</span>
-              <span class="profile-info-value" id="acct-track">—</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Account Type</span>
-              <span class="profile-info-value">Student</span>
-            </div>
-            <div class="profile-info-row">
-              <span class="profile-info-label">Password</span>
-              <span class="profile-info-value">
-                <span style="letter-spacing:3px;color:#9ca3af;">••••••••</span>
-                <a href="#" onclick="switchTab('security'); return false;" style="font-size:0.8rem;color:#6366f1;font-weight:600;margin-left:12px;text-decoration:none;">Change</a>
-              </span>
-            </div>
-          </div>
-        </div>
+ <!-- ── Tab: Account ── -->
+ <div class="profile-panel" id="tab-account">
+ <div class="profile-section-card">
+ <div class="profile-section-head">
+ <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+ <div>
+ <h3>Account Overview</h3>
+ <p>Your account details at a glance</p>
+ </div>
+ </div>
+ <div class="profile-section-body">
+ <div class="profile-info-row">
+ <span class="profile-info-label">Full Name</span>
+ <span class="profile-info-value" id="acct-name">—</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Email</span>
+ <span class="profile-info-value" id="acct-email">—</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Track</span>
+ <span class="profile-info-value" id="acct-track">—</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Account Type</span>
+ <span class="profile-info-value">Student</span>
+ </div>
+ <div class="profile-info-row">
+ <span class="profile-info-label">Password</span>
+ <span class="profile-info-value">
+ <span style="letter-spacing:3px;color:#9ca3af;">••••••••</span>
+ <a href="#" onclick="switchTab('security'); return false;" style="font-size:0.8rem;color:#6366f1;font-weight:600;margin-left:12px;text-decoration:none;">Change</a>
+ </span>
+ </div>
+ </div>
+ </div>
 
-        <!-- Sign out -->
-        <div class="danger-zone-card">
-          <div class="danger-zone-head">
-            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <h3>Danger Zone</h3>
-          </div>
-          <div class="danger-zone-body">
-            <div class="danger-item">
-              <div class="danger-item-info">
-                <h4>Sign Out</h4>
-                <p>You will be logged out of your account on this device.</p>
-              </div>
-              <button class="btn-danger" id="account-logout-btn">
-                <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+ <!-- Sign out -->
+ <div class="danger-zone-card">
+ <div class="danger-zone-head">
+ <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+ <h3>Danger Zone</h3>
+ </div>
+ <div class="danger-zone-body">
+ <div class="danger-item">
+ <div class="danger-item-info">
+ <h4>Sign Out</h4>
+ <p>You will be logged out of your account on this device.</p>
+ </div>
+ <button class="btn-danger" id="account-logout-btn">
+ <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                 Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+ </button>
+ </div>
+ </div>
+ </div>
+ </div>
 
-    </main>
+ </main>
 
-    <!-- Logout Modal -->
-    <div class="modal-overlay" id="logout-modal">
-      <div class="modal" style="max-width:400px;padding:32px;">
-        <div style="text-align:center;">
-          <div class="modal-icon" style="background:#fef2f2;color:#dc2626;margin:0 auto 16px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-          </div>
-          <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">Sign Out</h2>
-          <p style="color:#6b7280;font-size:0.9rem;">Are you sure you want to sign out of your account?</p>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:24px;">
-          <button class="modal-submit" id="logout-confirm" style="background:#dc2626;flex:1;">Yes, Sign Out</button>
-          <button class="modal-submit" id="logout-cancel" style="background:#e5e7eb;color:#374151;flex:1;">Cancel</button>
-        </div>
-      </div>
-    </div>
+ <!-- Logout Modal -->
+ <div class="modal-overlay" id="logout-modal">
+ <div class="modal" style="max-width:400px;padding:32px;">
+ <div style="text-align:center;">
+ <div class="modal-icon" style="background:#fef2f2;color:#dc2626;margin:0 auto 16px;">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+ </svg>
+ </div>
+ <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">Sign Out</h2>
+ <p style="color:#6b7280;font-size:0.9rem;">Are you sure you want to sign out of your account?</p>
+ </div>
+ <div style="display:flex;gap:12px;margin-top:24px;">
+ <button class="modal-submit" id="logout-confirm" style="background:#dc2626;flex:1;">Yes, Sign Out</button>
+ <button class="modal-submit" id="logout-cancel" style="background:#e5e7eb;color:#374151;flex:1;">Cancel</button>
+ </div>
+ </div>
+ </div>
 
-    <footer class="footer" id="footer">
-      <div class="footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand-col">
-            <div class="footer-brand">
-              <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-              <div class="footer-brand-info">
-                <span class="footer-brand-name">Tech4Girls</span>
-                <span class="footer-brand-desc">Learning Management System</span>
-              </div>
-            </div>
-            <p class="footer-tagline">Empowering young women through technology education, one student at a time.</p>
-          </div>
-          <div class="footer-nav-col">
-            <h4 class="footer-nav-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="index.html#features">Features</a>
-              <a href="index.html#about">About</a>
-              <a href="login.html">Sign In</a>
-            </div>
-          </div>
-          <div class="footer-partner-col">
-            <h4 class="footer-nav-title">Partner</h4>
-            <div class="footer-partner">
-              <img src="img/hacsa logo.jpg" alt="HACSA Logo" />
-              <span>HACSA Foundation</span>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p class="footer-copy">&copy; 2026 Tech4Girls by HACSA Foundation. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+ <footer class="footer" id="footer">
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand-col">
+ <div class="footer-brand">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <div class="footer-brand-info">
+ <span class="footer-brand-name">Tech4Girls</span>
+ <span class="footer-brand-desc">Learning Management System</span>
+ </div>
+ </div>
+ <p class="footer-tagline">Empowering young women through technology education, one student at a time.</p>
+ </div>
+ <div class="footer-nav-col">
+ <h4 class="footer-nav-title">Quick Links</h4>
+ <div class="footer-links">
+ <a href="index.html">Home</a>
+ <a href="index.html#features">Features</a>
+ <a href="index.html#about">About</a>
+ <a href="login.html">Sign In</a>
+ </div>
+ </div>
+ <div class="footer-partner-col">
+ <h4 class="footer-nav-title">Partner</h4>
+ <div class="footer-partner">
+ <img src="img/hacsa logo.jpg" alt="HACSA Logo" />
+ <span>HACSA Foundation</span>
+ </div>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p class="footer-copy">&copy; 2026 Tech4Girls by HACSA Foundation. All rights reserved.</p>
+ </div>
+ </div>
+ </footer>
 
-   
+ 
 <script src="js/session.js"></script>
 <script>
   // BASE_URL is declared in session.js — do not redeclare
@@ -1018,7 +908,7 @@
     const c = colors[type] || colors.info;
     const toast = document.createElement("div");
     toast.id = "toast";
-    toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn .3s ease;`;
+    toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn.3s ease;`;
     toast.innerHTML = `<span>${message}</span>`;
     document.body.appendChild(toast);
     if (!document.getElementById("toast-style")) {
@@ -1070,7 +960,7 @@
   }
 
   navToggle.addEventListener("click", () =>
-    navLinks.classList.contains("active") ? closeNav() : openNav()
+    navLinks.classList.contains("active")? closeNav(): openNav()
   );
   navOverlay.addEventListener("click", closeNav);
 
@@ -1093,10 +983,8 @@
   function togglePwd(id, btn) {
     const input = document.getElementById(id);
     const isText = input.type === "text";
-    input.type = isText ? "password" : "text";
-    btn.innerHTML = isText
-      ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
-      : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+    input.type = isText? "password": "text";
+    btn.innerHTML = isText? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
   }
 
   // ── Password Strength
@@ -1111,21 +999,21 @@
 
     const colors = ["#ef4444","#f97316","#eab308","#22c55e"];
     const labels = ["Weak","Fair","Good","Strong"];
-    segs.forEach((s, i) => { s.style.background = i < score ? colors[score - 1] : "#e5e7eb"; });
-    label.textContent = score === 0 ? "Enter a password" : labels[score - 1];
-    label.style.color = score === 0 ? "#9ca3af" : colors[score - 1];
+    segs.forEach((s, i) => { s.style.background = i < score? colors[score - 1]: "#e5e7eb"; });
+    label.textContent = score === 0? "Enter a password": labels[score - 1];
+    label.style.color = score === 0? "#9ca3af": colors[score - 1];
 
     updateRule("rule-length-icon", val.length >= 8);
     updateRule("rule-upper-icon", /[A-Z]/.test(val));
     updateRule("rule-number-icon", /[0-9]/.test(val));
-    updateRule("rule-default-icon", val !== "temp1234" && val.length > 0);
+    updateRule("rule-default-icon", val!== "temp1234" && val.length > 0);
   }
 
   function updateRule(id, pass) {
     const el = document.getElementById(id);
-    el.textContent = pass ? "✓" : "✗";
-    el.style.background = pass ? "#dcfce7" : "#e5e7eb";
-    el.style.color = pass ? "#16a34a" : "#9ca3af";
+    el.textContent = pass? "": "";
+    el.style.background = pass? "#dcfce7": "#e5e7eb";
+    el.style.color = pass? "#16a34a": "#9ca3af";
   }
 
   function clearStrength() {
@@ -1142,7 +1030,7 @@
     const firstName = document.getElementById("field-firstname").value.trim();
     const lastName = document.getElementById("field-lastname").value.trim();
 
-    if (!firstName || !lastName) {
+    if (!firstName ||!lastName) {
       showToast("Please fill in both first and last name.", "warning");
       return;
     }
@@ -1196,7 +1084,7 @@
 
     const showErr = (msg) => { errEl.textContent = msg; errEl.style.display = "flex"; };
 
-    if (newPwd !== confirm) return showErr("New passwords do not match.");
+    if (newPwd!== confirm) return showErr("New passwords do not match.");
     if (newPwd.length < 8) return showErr("Password must be at least 8 characters.");
     if (!/[A-Z]/.test(newPwd)) return showErr("Password must contain at least one uppercase letter.");
     if (!/[0-9]/.test(newPwd)) return showErr("Password must contain at least one number.");
@@ -1236,7 +1124,7 @@
     const notifications = await res.json();
     const badge = document.getElementById("notif-badge");
     const list = document.getElementById("notif-list");
-    const unread = notifications.filter(n => !n.is_read);
+    const unread = notifications.filter(n =>!n.is_read);
 
     if (unread.length > 0) {
       badge.textContent = unread.length;
@@ -1251,15 +1139,15 @@
     }
 
     list.innerHTML = notifications.map(n => `
-      <div class="notif-item ${n.is_read ? '' : 'unread'}" data-id="${n.id}">
-        <div class="notif-dot" style="${n.is_read ? 'opacity:0;' : ''}"></div>
-        <div>
-          <div>${n.message}</div>
-          <div style="font-size:0.75rem;color:#9ca3af;margin-top:3px;">
+ <div class="notif-item ${n.is_read? '': 'unread'}" data-id="${n.id}">
+ <div class="notif-dot" style="${n.is_read? 'opacity:0;': ''}"></div>
+ <div>
+ <div>${n.message}</div>
+ <div style="font-size:0.75rem;color:#9ca3af;margin-top:3px;">
             ${new Date(n.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })}
-          </div>
-        </div>
-      </div>
+ </div>
+ </div>
+ </div>
     `).join('');
 
     list.querySelectorAll(".notif-item").forEach(item => {
@@ -1300,5 +1188,5 @@ document.addEventListener("click", (e) => {
 
 loadNotifications();
 </script>
-  </body>
+ </body>
 </html>

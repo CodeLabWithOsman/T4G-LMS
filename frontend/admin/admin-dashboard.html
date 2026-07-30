@@ -1,643 +1,662 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard Tech4Girls LMS</title>
-    <meta
+ <head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Admin Dashboard Tech4Girls LMS</title>
+ <meta
       name="description"
       content="Admin dashboard for Tech4Girls LMS. Manage students, lecturers, and track assignments."
     />
-    <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
-    <link rel="apple-touch-icon" href="img/Tech4Girls logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+ <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
+ <link rel="apple-touch-icon" href="img/Tech4Girls logo.png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-  </head>
-  <body class="dashboard-page">
-    <nav class="navbar" id="navbar">
-      <div class="navbar-inner">
-        <a href="index.html" class="navbar-logo" id="logo-link">
-          <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-          <span class="logo-text">Tech4Girls</span>
-        </a>
-        <button
+ <link rel="stylesheet" href="css/style.css" />
+ <link rel="stylesheet" href="css/dashboard.css" />
+ <!-- T4G-AUTH-GUARD: runs before first paint. Do not move below the stylesheets. -->
+ <script>
+      document.documentElement.className += ' auth-pending';
+      window.__T4G_ROLE__ = 'admin';
+      // Safety net: never leave the page permanently hidden.
+      setTimeout(function () {
+        document.documentElement.classList.remove('auth-pending');
+      }, 4000);
+ </script>
+ <noscript>
+ <style>
+        html.auth-pending body { visibility: visible!important; }
+ </style>
+ </noscript>
+ <script src="js/session.js"></script>
+ <script>
+      if (window.Session) {
+        Session.requireAuth();
+      } else {
+        document.documentElement.classList.remove('auth-pending');
+      }
+ </script>
+</head>
+ <body class="dashboard-page">
+ <nav class="navbar" id="navbar">
+ <div class="navbar-inner">
+ <a href="index.html" class="navbar-logo" id="logo-link">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <span class="logo-text">Tech4Girls</span>
+ </a>
+ <button
           class="nav-toggle"
           id="nav-toggle"
           aria-label="Toggle navigation"
         >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-        <ul class="navbar-links" id="navbar-links">
-          <li><a href="index.html" id="nav-home">Home</a></li>
-          <li>
-            <a href="#" class="nav-dashboard" id="nav-dashboard">Dashboard</a>
-          </li>
-          <li><a href="#students-section" id="nav-students">Students</a></li>
-          <li><a href="#lecturers-section" id="nav-lecturers">Lecturers</a></li>
-          <li>
-            <a href="#" class="nav-user-menu" id="nav-user">
-              <span class="nav-user-avatar">AD</span>
-              <span class="nav-user-name">Admin</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ </button>
+ <ul class="navbar-links" id="navbar-links">
+ <li><a href="index.html" id="nav-home">Home</a></li>
+ <li>
+ <a href="#" class="nav-dashboard" id="nav-dashboard">Dashboard</a>
+ </li>
+ <li><a href="#students-section" id="nav-students">Students</a></li>
+ <li><a href="#lecturers-section" id="nav-lecturers">Lecturers</a></li>
+ <li>
+ <a href="#" class="nav-user-menu" id="nav-user">
+ <span class="nav-user-avatar">AD</span>
+ <span class="nav-user-name">Admin</span>
+ </a>
+ </li>
+ </ul>
+ </div>
+ </nav>
 
-    <main class="dashboard-main" id="dashboard-main">
-      <div class="dashboard-header">
-        <div class="dashboard-header-top">
-          <div class="dashboard-greeting">
-            <h1>Admin Dashboard</h1>
-            <p>Manage students, lecturers, and track assignments</p>
-          </div>
-          <div class="dashboard-role-badge">
-            <svg
+ <main class="dashboard-main" id="dashboard-main">
+ <div class="dashboard-header">
+ <div class="dashboard-header-top">
+ <div class="dashboard-greeting">
+ <h1>Admin Dashboard</h1>
+ <p>Manage students, lecturers, and track assignments</p>
+ </div>
+ <div class="dashboard-role-badge">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-              <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
+ <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+ <path
+                d="M19.4 15a1.65 1.65 0 0 0.33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
               />
-            </svg>
+ </svg>
             Administrator
-          </div>
-        </div>
-      </div>
+ </div>
+ </div>
+ </div>
 
-      <div class="stat-cards">
-        <div class="stat-card card-blue">
-          <div class="stat-card-icon">
-            <svg
+ <div class="stat-cards">
+ <div class="stat-card card-blue">
+ <div class="stat-card-icon">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <div class="stat-card-value" id="stat-students">—</div>
-          <div class="stat-card-label">Total Students</div>
-        </div>
+ <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+ <circle cx="9" cy="7" r="4" />
+ <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+ <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+ </svg>
+ </div>
+ <div class="stat-card-value" id="stat-students">—</div>
+ <div class="stat-card-label">Total Students</div>
+ </div>
 
-        <div class="stat-card card-navy">
-          <div class="stat-card-icon">
-            <svg
+ <div class="stat-card card-navy">
+ <div class="stat-card-icon">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-          </div>
-          <div class="stat-card-value" id="stat-lecturers">—</div>
-          <div class="stat-card-label">Total Lecturers</div>
-        </div>
+ <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+ <circle cx="12" cy="7" r="4" />
+ </svg>
+ </div>
+ <div class="stat-card-value" id="stat-lecturers">—</div>
+ <div class="stat-card-label">Total Lecturers</div>
+ </div>
 
-        <div class="stat-card card-sky">
-          <div class="stat-card-icon">
-            <svg
+ <div class="stat-card card-sky">
+ <div class="stat-card-icon">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <div class="stat-card-value" id="stat-frontend">—</div>
-          <div class="stat-card-label">Frontend Track</div>
-        </div>
+ <polyline points="16 18 22 12 16 6" />
+ <polyline points="8 6 2 12 8 18" />
+ </svg>
+ </div>
+ <div class="stat-card-value" id="stat-frontend">—</div>
+ <div class="stat-card-label">Frontend Track</div>
+ </div>
 
-        <div class="stat-card card-deep">
-          <div class="stat-card-icon">
-            <svg
+ <div class="stat-card card-deep">
+ <div class="stat-card-icon">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
-          </div>
-          <div class="stat-card-value" id="stat-backend">—</div>
-          <div class="stat-card-label">Backend Track</div>
-        </div>
-      </div>
+ <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+ <line x1="8" y1="21" x2="16" y2="21" />
+ <line x1="12" y1="17" x2="12" y2="21" />
+ </svg>
+ </div>
+ <div class="stat-card-value" id="stat-backend">—</div>
+ <div class="stat-card-label">Backend Track</div>
+ </div>
+ </div>
 
-      <!-- Students Section -->
-      <div class="dashboard-section" id="students-section">
-        <div class="dashboard-section-header">
-          <div class="dashboard-section-title">
-            <svg
+ <!-- Students Section -->
+ <div class="dashboard-section" id="students-section">
+ <div class="dashboard-section-header">
+ <div class="dashboard-section-title">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <h2>Student Management</h2>
-          </div>
-          <button
+ <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+ <circle cx="9" cy="7" r="4" />
+ <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+ <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+ </svg>
+ <h2>Student Management</h2>
+ </div>
+ <button
             class="btn-action btn-action-primary"
             id="btn-add-student"
             onclick="openModal('student-modal')"
           >
-            <svg
+ <svg
               viewBox="0 0 24 24"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
+ <line x1="12" y1="5" x2="12" y2="19" />
+ <line x1="5" y1="12" x2="19" y2="12" />
+ </svg>
             Add Student
-          </button>
-        </div>
+ </button>
+ </div>
 
-        <div class="dashboard-section-body">
-          <div class="search-filter-bar" style="margin-bottom: 20px">
-            <div class="search-input-wrap">
-              <svg
+ <div class="dashboard-section-body">
+ <div class="search-filter-bar" style="margin-bottom: 20px">
+ <div class="search-input-wrap">
+ <svg
                 viewBox="0 0 24 24"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input
+ <circle cx="11" cy="11" r="8" />
+ <line x1="21" y1="21" x2="16.65" y2="16.65" />
+ </svg>
+ <input
                 type="text"
                 class="search-input"
                 id="search-students"
                 placeholder="Search students by name, email, or ID..."
               />
-            </div>
-            <select class="filter-select" id="filter-student-track">
-              <option value="">All Tracks</option>
-              <option value="frontend">Frontend</option>
-              <option value="backend">Backend</option>
-            </select>
-          </div>
+ </div>
+ <select class="filter-select" id="filter-student-track">
+ <option value="">All Tracks</option>
+ <option value="frontend">Frontend</option>
+ <option value="backend">Backend</option>
+ </select>
+ </div>
 
-          <div class="dashboard-table-wrapper">
-            <table class="dashboard-table" id="students-table">
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Student ID</th>
-                  <th>Track</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+ <div class="dashboard-table-wrapper">
+ <table class="dashboard-table" id="students-table">
+ <thead>
+ <tr>
+ <th>Student</th>
+ <th>Student ID</th>
+ <th>Track</th>
+ <th>Status</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody></tbody>
+ </table>
+ </div>
+ </div>
+ </div>
 
-      <!-- Lecturers Section -->
-      <div class="dashboard-section" id="lecturers-section">
-        <div class="dashboard-section-header">
-          <div class="dashboard-section-title">
-            <svg
+ <!-- Lecturers Section -->
+ <div class="dashboard-section" id="lecturers-section">
+ <div class="dashboard-section-header">
+ <div class="dashboard-section-title">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <h2>Lecturer Management</h2>
-          </div>
-          <button
+ <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+ <circle cx="12" cy="7" r="4" />
+ </svg>
+ <h2>Lecturer Management</h2>
+ </div>
+ <button
             class="btn-action btn-action-primary"
             id="btn-add-lecturer"
             onclick="openModal('lecturer-modal')"
           >
-            <svg
+ <svg
               viewBox="0 0 24 24"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
+ <line x1="12" y1="5" x2="12" y2="19" />
+ <line x1="5" y1="12" x2="19" y2="12" />
+ </svg>
             Add Lecturer
-          </button>
-        </div>
+ </button>
+ </div>
 
-        <div class="dashboard-section-body">
-          <div class="search-filter-bar" style="margin-bottom: 20px">
-            <div class="search-input-wrap">
-              <svg
+ <div class="dashboard-section-body">
+ <div class="search-filter-bar" style="margin-bottom: 20px">
+ <div class="search-input-wrap">
+ <svg
                 viewBox="0 0 24 24"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input
+ <circle cx="11" cy="11" r="8" />
+ <line x1="21" y1="21" x2="16.65" y2="16.65" />
+ </svg>
+ <input
                 type="text"
                 class="search-input"
                 id="search-lecturers"
                 placeholder="Search lecturers by name or email..."
               />
-            </div>
-            <select class="filter-select" id="filter-lecturer-track">
-              <option value="">All Tracks</option>
-              <option value="frontend">Frontend</option>
-              <option value="backend">Backend</option>
-            </select>
-          </div>
+ </div>
+ <select class="filter-select" id="filter-lecturer-track">
+ <option value="">All Tracks</option>
+ <option value="frontend">Frontend</option>
+ <option value="backend">Backend</option>
+ </select>
+ </div>
 
-          <div class="dashboard-table-wrapper">
-            <table class="dashboard-table" id="lecturers-table">
-              <thead>
-                <tr>
-                  <th>Lecturer</th>
-                  <th>Staff ID</th>
-                  <th>Track</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+ <div class="dashboard-table-wrapper">
+ <table class="dashboard-table" id="lecturers-table">
+ <thead>
+ <tr>
+ <th>Lecturer</th>
+ <th>Staff ID</th>
+ <th>Track</th>
+ <th>Status</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody></tbody>
+ </table>
+ </div>
+ </div>
+ </div>
 
 
-      <!-- Announcements Section -->
+ <!-- Announcements Section -->
 <div class="dashboard-section" id="announcements-section">
-  <div class="dashboard-section-header">
-    <div class="dashboard-section-title">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3Z"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-      </svg>
-      <h2>Announcements</h2>
-    </div>
-    <button class="btn-action btn-action-primary" onclick="openModal('announcement-modal')">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"/>
-        <line x1="5" y1="12" x2="19" y2="12"/>
-      </svg>
+ <div class="dashboard-section-header">
+ <div class="dashboard-section-title">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3Z"/>
+ <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+ </svg>
+ <h2>Announcements</h2>
+ </div>
+ <button class="btn-action btn-action-primary" onclick="openModal('announcement-modal')">
+ <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+ <line x1="12" y1="5" x2="12" y2="19"/>
+ <line x1="5" y1="12" x2="19" y2="12"/>
+ </svg>
       New Announcement
-    </button>
-  </div>
+ </button>
+ </div>
 
-  <div class="dashboard-section-body">
-    <div id="announcements-list">
-      <p style="text-align:center; padding:20px; color: var(--text-muted);">Loading announcements...</p>
-    </div>
-  </div>
+ <div class="dashboard-section-body">
+ <div id="announcements-list">
+ <p style="text-align:center; padding:20px; color: var(--text-muted);">Loading announcements...</p>
+ </div>
+ </div>
 </div>
-    </main>
+ </main>
 
-    <!-- Add Student Modal -->
-    <div class="modal-overlay" id="student-modal">
-      <div class="modal">
-        <div class="modal-header">
-          <h3>Add New Student</h3>
-          <button class="modal-close" onclick="closeModal('student-modal')">
-            <svg
+ <!-- Add Student Modal -->
+ <div class="modal-overlay" id="student-modal">
+ <div class="modal">
+ <div class="modal-header">
+ <h3>Add New Student</h3>
+ <button class="modal-close" onclick="closeModal('student-modal')">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="dashboard-form" id="add-student-form">
-            <div class="form-group">
-              <label class="form-label" for="student-fname">First Name</label>
-              <input
+ <line x1="18" y1="6" x2="6" y2="18" />
+ <line x1="6" y1="6" x2="18" y2="18" />
+ </svg>
+ </button>
+ </div>
+ <div class="modal-body">
+ <form class="dashboard-form" id="add-student-form">
+ <div class="form-group">
+ <label class="form-label" for="student-fname">First Name</label>
+ <input
                 type="text"
                 class="form-input"
                 id="student-fname"
                 placeholder="e.g. Hajira"
                 required
               />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="student-lname">Last Name</label>
-              <input
+ </div>
+ <div class="form-group">
+ <label class="form-label" for="student-lname">Last Name</label>
+ <input
                 type="text"
                 class="form-input"
                 id="student-lname"
                 placeholder="e.g. Baffoe"
                 required
               />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="student-email"
+ </div>
+ <div class="form-group">
+ <label class="form-label" for="student-email"
                 >Email Address</label
               >
-              <input
+ <input
                 type="email"
                 class="form-input"
                 id="student-email"
                 placeholder="student@email.com"
                 required
               />
-            </div>
-            <div class="form-group full-width">
-              <label class="form-label" for="student-track">Assign Track</label>
-              <select class="form-select" id="student-track" required>
-                <option value="" disabled selected>Select a track</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
-              </select>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn-action btn-action-primary">
-                <svg
+ </div>
+ <div class="form-group full-width">
+ <label class="form-label" for="student-track">Assign Track</label>
+ <select class="form-select" id="student-track" required>
+ <option value="" disabled selected>Select a track</option>
+ <option value="Frontend">Frontend</option>
+ <option value="Backend">Backend</option>
+ </select>
+ </div>
+ <div class="form-actions">
+ <button type="submit" class="btn-action btn-action-primary">
+ <svg
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
+ <polyline points="20 6 9 17 4 12" />
+ </svg>
                 Add Student
-              </button>
-              <button
+ </button>
+ <button
                 type="button"
                 class="btn-action btn-action-secondary"
                 onclick="closeModal('student-modal')"
               >
                 Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+ </button>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
 
-    <!-- Add Lecturer Modal -->
-    <div class="modal-overlay" id="lecturer-modal">
-      <div class="modal">
-        <div class="modal-header">
-          <h3>Add New Lecturer</h3>
-          <button class="modal-close" onclick="closeModal('lecturer-modal')">
-            <svg
+ <!-- Add Lecturer Modal -->
+ <div class="modal-overlay" id="lecturer-modal">
+ <div class="modal">
+ <div class="modal-header">
+ <h3>Add New Lecturer</h3>
+ <button class="modal-close" onclick="closeModal('lecturer-modal')">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="dashboard-form" id="add-lecturer-form">
-            <div class="form-group">
-              <label class="form-label" for="lecturer-fname">First Name</label>
-              <input
+ <line x1="18" y1="6" x2="6" y2="18" />
+ <line x1="6" y1="6" x2="18" y2="18" />
+ </svg>
+ </button>
+ </div>
+ <div class="modal-body">
+ <form class="dashboard-form" id="add-lecturer-form">
+ <div class="form-group">
+ <label class="form-label" for="lecturer-fname">First Name</label>
+ <input
                 type="text"
                 class="form-input"
                 id="lecturer-fname"
                 placeholder="e.g. Jane"
                 required
               />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="lecturer-lname">Last Name</label>
-              <input
+ </div>
+ <div class="form-group">
+ <label class="form-label" for="lecturer-lname">Last Name</label>
+ <input
                 type="text"
                 class="form-input"
                 id="lecturer-lname"
                 placeholder="e.g. Mensah"
                 required
               />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="lecturer-email"
+ </div>
+ <div class="form-group">
+ <label class="form-label" for="lecturer-email"
                 >Email Address</label
               >
-              <input
+ <input
                 type="email"
                 class="form-input"
                 id="lecturer-email"
                 placeholder="lecturer@tech4girls.org"
                 required
               />
-            </div>
-            <div class="form-group full-width">
-              <label class="form-label" for="lecturer-track"
+ </div>
+ <div class="form-group full-width">
+ <label class="form-label" for="lecturer-track"
                 >Assign Track</label
               >
-              <select class="form-select" id="lecturer-track" required>
-                <option value="" disabled selected>Select a track</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
-              </select>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn-action btn-action-primary">
-                <svg
+ <select class="form-select" id="lecturer-track" required>
+ <option value="" disabled selected>Select a track</option>
+ <option value="Frontend">Frontend</option>
+ <option value="Backend">Backend</option>
+ </select>
+ </div>
+ <div class="form-actions">
+ <button type="submit" class="btn-action btn-action-primary">
+ <svg
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
+ <polyline points="20 6 9 17 4 12" />
+ </svg>
                 Add Lecturer
-              </button>
-              <button
+ </button>
+ <button
                 type="button"
                 class="btn-action btn-action-secondary"
                 onclick="closeModal('lecturer-modal')"
               >
                 Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+ </button>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
 
-    <!-- Enroll Student Modal -->
-    <div class="modal-overlay" id="enroll-modal">
-      <div class="modal">
-        <div class="modal-header">
-          <h3>Enroll Student in Course</h3>
-          <button class="modal-close" onclick="closeModal('enroll-modal')">
-            <svg
+ <!-- Enroll Student Modal -->
+ <div class="modal-overlay" id="enroll-modal">
+ <div class="modal">
+ <div class="modal-header">
+ <h3>Enroll Student in Course</h3>
+ <button class="modal-close" onclick="closeModal('enroll-modal')">
+ <svg
               viewBox="0 0 24 24"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="dashboard-form" id="enroll-form">
-            <input type="hidden" id="enroll-student-id" />
-            <div class="form-group full-width">
-              <label class="form-label">Student</label>
-              <input
+ <line x1="18" y1="6" x2="6" y2="18" />
+ <line x1="6" y1="6" x2="18" y2="18" />
+ </svg>
+ </button>
+ </div>
+ <div class="modal-body">
+ <form class="dashboard-form" id="enroll-form">
+ <input type="hidden" id="enroll-student-id" />
+ <div class="form-group full-width">
+ <label class="form-label">Student</label>
+ <input
                 type="text"
                 class="form-input"
                 id="enroll-student-name"
                 disabled
               />
-            </div>
-            <div class="form-group full-width">
-              <label class="form-label" for="enroll-course-id"
+ </div>
+ <div class="form-group full-width">
+ <label class="form-label" for="enroll-course-id"
                 >Select Course</label
               >
-              <select class="form-select" id="enroll-course-id" required>
-                <option value="" disabled selected>Choose a course</option>
-              </select>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn-action btn-action-primary">
-                <svg
+ <select class="form-select" id="enroll-course-id" required>
+ <option value="" disabled selected>Choose a course</option>
+ </select>
+ </div>
+ <div class="form-actions">
+ <button type="submit" class="btn-action btn-action-primary">
+ <svg
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
+ <polyline points="20 6 9 17 4 12" />
+ </svg>
                 Enroll Student
-              </button>
-              <button
+ </button>
+ <button
                 type="button"
                 class="btn-action btn-action-secondary"
                 onclick="closeModal('enroll-modal')"
               >
                 Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+ </button>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
 
-    <!-- Announcement Modal -->
+ <!-- Announcement Modal -->
 <div class="modal-overlay" id="announcement-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Post Announcement</h3>
-      <button class="modal-close" onclick="closeModal('announcement-modal')">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form class="dashboard-form" id="announcement-form">
-        <div class="form-group full-width">
-          <label class="form-label" for="announcement-title">Title</label>
-          <input type="text" class="form-input" id="announcement-title" placeholder="e.g. Week 3 Schedule Update" required/>
-        </div>
-        <div class="form-group full-width">
-          <label class="form-label" for="announcement-message">Message</label>
-          <textarea class="form-input" id="announcement-message" rows="4" placeholder="Write your announcement here..." required style="resize:vertical;"></textarea>
-        </div>
-        <div class="form-group full-width">
-          <label class="form-label" for="announcement-posted-by">Posted By</label>
-          <input type="text" class="form-input" id="announcement-posted-by" placeholder="e.g. Admin" value="Admin" required/>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn-action btn-action-primary">
-            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
+ <div class="modal">
+ <div class="modal-header">
+ <h3>Post Announcement</h3>
+ <button class="modal-close" onclick="closeModal('announcement-modal')">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <line x1="18" y1="6" x2="6" y2="18"/>
+ <line x1="6" y1="6" x2="18" y2="18"/>
+ </svg>
+ </button>
+ </div>
+ <div class="modal-body">
+ <form class="dashboard-form" id="announcement-form">
+ <div class="form-group full-width">
+ <label class="form-label" for="announcement-title">Title</label>
+ <input type="text" class="form-input" id="announcement-title" placeholder="e.g. Week 3 Schedule Update" required/>
+ </div>
+ <div class="form-group full-width">
+ <label class="form-label" for="announcement-message">Message</label>
+ <textarea class="form-input" id="announcement-message" rows="4" placeholder="Write your announcement here..." required style="resize:vertical;"></textarea>
+ </div>
+ <div class="form-group full-width">
+ <label class="form-label" for="announcement-posted-by">Posted By</label>
+ <input type="text" class="form-input" id="announcement-posted-by" placeholder="e.g. Admin" value="Admin" required/>
+ </div>
+ <div class="form-actions">
+ <button type="submit" class="btn-action btn-action-primary">
+ <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="20 6 9 17 4 12"/>
+ </svg>
             Post Announcement
-          </button>
-          <button type="button" class="btn-action btn-action-secondary" onclick="closeModal('announcement-modal')">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
+ </button>
+ <button type="button" class="btn-action btn-action-secondary" onclick="closeModal('announcement-modal')">Cancel</button>
+ </div>
+ </form>
+ </div>
+ </div>
 </div>
 
-    <footer class="footer" id="footer">
-      <div class="footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand-col">
-            <div class="footer-brand">
-              <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-              <div class="footer-brand-info">
-                <span class="footer-brand-name">Tech4Girls</span>
-                <span class="footer-brand-desc"
+ <footer class="footer" id="footer">
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand-col">
+ <div class="footer-brand">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <div class="footer-brand-info">
+ <span class="footer-brand-name">Tech4Girls</span>
+ <span class="footer-brand-desc"
                   >Learning Management System</span
                 >
-              </div>
-            </div>
-            <p class="footer-tagline">
+ </div>
+ </div>
+ <p class="footer-tagline">
               Empowering young women through technology education, one student
               at a time.
-            </p>
-          </div>
-          <div class="footer-nav-col">
-            <h4 class="footer-nav-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="index.html#features">Features</a>
-              <a href="index.html#about">About</a>
-              <a href="login.html">Sign In</a>
-            </div>
-          </div>
-          <div class="footer-partner-col">
-            <h4 class="footer-nav-title">Partner</h4>
-            <div class="footer-partner">
-              <img src="img/hacsa logo.jpg" alt="HACSA Logo" />
-              <span>HACSA Foundation</span>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p class="footer-copy">
+ </p>
+ </div>
+ <div class="footer-nav-col">
+ <h4 class="footer-nav-title">Quick Links</h4>
+ <div class="footer-links">
+ <a href="index.html">Home</a>
+ <a href="index.html#features">Features</a>
+ <a href="index.html#about">About</a>
+ <a href="index.html">Sign In</a>
+ </div>
+ </div>
+ <div class="footer-partner-col">
+ <h4 class="footer-nav-title">Partner</h4>
+ <div class="footer-partner">
+ <img src="img/hacsa logo.jpg" alt="HACSA Logo" />
+ <span>HACSA Foundation</span>
+ </div>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <p class="footer-copy">
             &copy; 2026 Tech4Girls by HACSA Foundation. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
+ </p>
+ </div>
+ </div>
+ </footer>
 
-    <script>
-      const BASE_URL = "https://t4g-lms-backend.fly.dev";
-      const token = localStorage.getItem("admin_token");
-
-
-      if (!token) {
-        window.location.href = "admin-login.html";
-      }
+ <script>
+      // BASE_URL and Session come from js/session.js. The head guard has
+      // already verified the session before this page painted.
+      const token = Session.getToken();
+      const adminUser = Session.getUser();
 function showToast(message, type = "info") {
   const existing = document.getElementById("toast");
   if (existing) existing.remove();
@@ -650,7 +669,7 @@ function showToast(message, type = "info") {
   const c = colors[type] || colors.info;
   const toast = document.createElement("div");
   toast.id = "toast";
-  toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn .3s ease;`;
+  toast.style.cssText = `position:fixed;top:24px;right:24px;z-index:9999;background:${c.bg};border:1.5px solid ${c.border};color:${c.text};padding:14px 20px;border-radius:12px;font-size:.875rem;font-weight:500;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;max-width:360px;animation:toastSlideIn.3s ease;`;
   toast.innerHTML = `<span>${message}</span>`;
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 4000);
@@ -763,36 +782,36 @@ function showToast(message, type = "info") {
         students.forEach((student) => {
           const initials = student.first_name[0] + student.last_name[0];
           const row = `
-            <tr>
-              <td>
-                <div class="table-user">
-                  <div class="table-avatar">${initials}</div>
-                  <div class="table-user-info">
-                    <span class="table-user-name">${student.first_name} ${student.last_name}</span>
-                    <span class="table-user-email">${student.email}</span>
-                  </div>
-                </div>
-              </td>
-              <td>${student.student_id}</td>
-              <td><span class="track-badge track-${student.track.toLowerCase()}">${student.track}</span></td>
-              <td><span class="status-dot active"></span> Active</td>
-              <td>
-                <div class="table-actions">
-                  <button class="table-action-btn btn-edit" onclick="openEnrollModal('${student.id}', '${student.first_name} ${student.last_name}')" title="Enroll in Course">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="table-action-btn btn-delete" onclick="deleteStudent('${student.id}')" title="Remove">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
+ <tr>
+ <td>
+ <div class="table-user">
+ <div class="table-avatar">${initials}</div>
+ <div class="table-user-info">
+ <span class="table-user-name">${student.first_name} ${student.last_name}</span>
+ <span class="table-user-email">${student.email}</span>
+ </div>
+ </div>
+ </td>
+ <td>${student.student_id}</td>
+ <td><span class="track-badge track-${student.track.toLowerCase()}">${student.track}</span></td>
+ <td><span class="status-dot active"></span> Active</td>
+ <td>
+ <div class="table-actions">
+ <button class="table-action-btn btn-edit" onclick="openEnrollModal('${student.id}', '${student.first_name} ${student.last_name}')" title="Enroll in Course">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+ <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+ </svg>
+ </button>
+ <button class="table-action-btn btn-delete" onclick="deleteStudent('${student.id}')" title="Remove">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="3 6 5 6 21 6"/>
+ <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+ </svg>
+ </button>
+ </div>
+ </td>
+ </tr>
           `;
           tbody.innerHTML += row;
         });
@@ -811,30 +830,30 @@ function showToast(message, type = "info") {
         staff.forEach((member) => {
           const initials = member.first_name[0] + member.last_name[0];
           const row = `
-            <tr>
-              <td>
-                <div class="table-user">
-                  <div class="table-avatar" style="background: var(--blue)">${initials}</div>
-                  <div class="table-user-info">
-                    <span class="table-user-name">${member.first_name} ${member.last_name}</span>
-                    <span class="table-user-email">${member.email}</span>
-                  </div>
-                </div>
-              </td>
-              <td>${member.staff_id}</td>
-              <td><span class="track-badge track-${member.track.toLowerCase()}">${member.track}</span></td>
-              <td><span class="status-dot active"></span> Active</td>
-              <td>
-                <div class="table-actions">
-                  <button class="table-action-btn btn-delete" onclick="deleteStaff('${member.id}')" title="Remove">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
+ <tr>
+ <td>
+ <div class="table-user">
+ <div class="table-avatar" style="background: var(--blue)">${initials}</div>
+ <div class="table-user-info">
+ <span class="table-user-name">${member.first_name} ${member.last_name}</span>
+ <span class="table-user-email">${member.email}</span>
+ </div>
+ </div>
+ </td>
+ <td>${member.staff_id}</td>
+ <td><span class="track-badge track-${member.track.toLowerCase()}">${member.track}</span></td>
+ <td><span class="status-dot active"></span> Active</td>
+ <td>
+ <div class="table-actions">
+ <button class="table-action-btn btn-delete" onclick="deleteStaff('${member.id}')" title="Remove">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="3 6 5 6 21 6"/>
+ <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+ </svg>
+ </button>
+ </div>
+ </td>
+ </tr>
           `;
           tbody.innerHTML += row;
         });
@@ -866,9 +885,7 @@ function showToast(message, type = "info") {
       }
 
       // Add student form
-      document
-        .getElementById("add-student-form")
-        .addEventListener("submit", async function (e) {
+      document.getElementById("add-student-form").addEventListener("submit", async function (e) {
           e.preventDefault();
           const body = {
             first_name: document.getElementById("student-fname").value,
@@ -895,9 +912,7 @@ function showToast(message, type = "info") {
         });
 
       // Add lecturer form
-      document
-        .getElementById("add-lecturer-form")
-        .addEventListener("submit", async function (e) {
+      document.getElementById("add-lecturer-form").addEventListener("submit", async function (e) {
           e.preventDefault();
           const body = {
             first_name: document.getElementById("lecturer-fname").value,
@@ -924,9 +939,7 @@ function showToast(message, type = "info") {
         });
 
       // Enroll student form
-      document
-        .getElementById("enroll-form")
-        .addEventListener("submit", async function (e) {
+      document.getElementById("enroll-form").addEventListener("submit", async function (e) {
           e.preventDefault();
           const body = {
             student_id: document.getElementById("enroll-student-id").value,
@@ -950,9 +963,7 @@ function showToast(message, type = "info") {
           }
         });
 // Search filtering
-document
-  .getElementById("search-students")
-  .addEventListener("input", async function () {
+document.getElementById("search-students").addEventListener("input", async function () {
     const q = this.value.trim();
     if (!q) {
       loadDashboard();
@@ -965,9 +976,7 @@ document
     loadStudentsTable(students);
   });
 
-document
-  .getElementById("search-lecturers")
-  .addEventListener("input", async function () {
+document.getElementById("search-lecturers").addEventListener("input", async function () {
     const q = this.value.trim();
     if (!q) {
       loadDashboard();
@@ -979,15 +988,11 @@ document
     const staff = await res.json();
     loadStaffTable(staff);
   });
-  
-      document
-        .getElementById("filter-student-track")
-        .addEventListener("change", function () {
+ 
+      document.getElementById("filter-student-track").addEventListener("change", function () {
           filterByTrack("students-table", this.value);
         });
-      document
-        .getElementById("filter-lecturer-track")
-        .addEventListener("change", function () {
+      document.getElementById("filter-lecturer-track").addEventListener("change", function () {
           filterByTrack("lecturers-table", this.value);
         });
 
@@ -1000,10 +1005,8 @@ document
           }
           const badge = row.querySelector(".track-badge");
           if (badge) {
-            const rowTrack = badge.classList.contains("track-frontend")
-              ? "frontend"
-              : "backend";
-            row.style.display = rowTrack === track ? "" : "none";
+            const rowTrack = badge.classList.contains("track-frontend")? "frontend": "backend";
+            row.style.display = rowTrack === track? "": "none";
           }
         });
       }
@@ -1025,22 +1028,22 @@ async function loadAnnouncements() {
       day: "numeric", month: "short", year: "numeric"
     });
     return `
-      <div class="announcement-card">
-        <div class="announcement-card-header">
-          <span class="announcement-title">${a.title}</span>
-          <button class="table-action-btn btn-delete" onclick="deleteAnnouncement('${a.id}')" title="Delete">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="3 6 5 6 21 6"/>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
-          </button>
-        </div>
-        <p class="announcement-message">${a.message}</p>
-        <div class="announcement-meta">
-          <span>Posted by <strong>${a.posted_by}</strong></span>
-          <span>${date}</span>
-        </div>
-      </div>
+ <div class="announcement-card">
+ <div class="announcement-card-header">
+ <span class="announcement-title">${a.title}</span>
+ <button class="table-action-btn btn-delete" onclick="deleteAnnouncement('${a.id}')" title="Delete">
+ <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+ <polyline points="3 6 5 6 21 6"/>
+ <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+ </svg>
+ </button>
+ </div>
+ <p class="announcement-message">${a.message}</p>
+ <div class="announcement-meta">
+ <span>Posted by <strong>${a.posted_by}</strong></span>
+ <span>${date}</span>
+ </div>
+ </div>
     `;
   }).join("");
 }
@@ -1083,7 +1086,7 @@ document.getElementById("announcement-form").addEventListener("submit", async fu
 
 
       loadDashboard();
-      loadAnnouncements();   
-    </script>
-  </body>
+      loadAnnouncements(); 
+ </script>
+ </body>
 </html>

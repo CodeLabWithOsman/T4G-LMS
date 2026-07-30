@@ -1,102 +1,121 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Sign In Tech4Girls LMS</title>
-    <meta
+ <head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Student Sign In Tech4Girls LMS</title>
+ <meta
       name="description"
       content="Student sign in to your Tech4Girls LMS account to access courses, assignments, and your learning dashboard."
     />
-    <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
-    <link rel="apple-touch-icon" href="img/Tech4Girls logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body class="login-page">
+ <link rel="icon" type="image/png" href="img/Tech4Girls logo.png" />
+ <link rel="apple-touch-icon" href="img/Tech4Girls logo.png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="css/style.css" />
+ <!-- T4G-AUTH-GUARD: runs before first paint. Do not move below the stylesheets. -->
+ <script>
+      document.documentElement.className += ' auth-pending';
+      window.__T4G_ROLE__ = 'student';
+      // Safety net: never leave the page permanently hidden.
+      setTimeout(function () {
+        document.documentElement.classList.remove('auth-pending');
+      }, 4000);
+ </script>
+ <noscript>
+ <style>
+        html.auth-pending body { visibility: visible!important; }
+ </style>
+ </noscript>
+ <script src="js/session.js"></script>
+ <script>
+      if (window.Session) {
+        Session.redirectIfAuthenticated();
+      } else {
+        document.documentElement.classList.remove('auth-pending');
+      }
+ </script>
+</head>
+ <body class="login-page">
 
-    <nav class="navbar" id="navbar">
-      <div class="navbar-inner">
-        <a href="index.html" class="navbar-logo" id="logo-link">
-          <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-          <span class="logo-text">Tech4Girls</span>
-        </a>
+ <nav class="navbar" id="navbar">
+ <div class="navbar-inner">
+ <a href="index.html" class="navbar-logo" id="logo-link">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <span class="logo-text">Tech4Girls</span>
+ </a>
 
-        <ul class="navbar-links" id="navbar-links">
-          <li class="sidebar-brand">
-            <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-            <span>Tech4Girls</span>
-          </li>
-          <li class="sidebar-section-label">Menu</li>
-          <li><a href="index.html" class="active-link" id="nav-home">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
+ <ul class="navbar-links" id="navbar-links">
+ <li class="sidebar-brand">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <span>Tech4Girls</span>
+ </li>
+ <li class="sidebar-section-label">Menu</li>
+ <li><a href="index.html" class="active-link" id="nav-home">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+ </svg>
             Home
-          </a></li>
-          <li><a href="index.html#features" id="nav-features">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
+ </a></li>
+ <li><a href="index.html#features" id="nav-features">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+ </svg>
             Features
-          </a></li>
-          <li><a href="index.html#about" id="nav-about">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
+ </a></li>
+ <li><a href="index.html#about" id="nav-about">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+ </svg>
             About
-          </a></li>
-          <li class="sidebar-divider"></li>
-          <li>
-            <a href="login.html" class="navbar-signin-btn" id="nav-signin">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                <polyline points="10 17 15 12 10 7"/>
-                <line x1="15" y1="12" x2="3" y2="12"/>
-              </svg>
+ </a></li>
+ <li class="sidebar-divider"></li>
+ <li>
+ <a href="login.html" class="navbar-signin-btn" id="nav-signin">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+ <polyline points="10 17 15 12 10 7"/>
+ <line x1="15" y1="12" x2="3" y2="12"/>
+ </svg>
               Sign In
-            </a>
-          </li>
-          <li class="sidebar-footer">
-            <p>Don't have an account yet?</p>
-            <a href="#" id="contact-admin-link">Contact your administrator</a>
-          </li>
-        </ul>
+ </a>
+ </li>
+ <li class="sidebar-footer">
+ <p>Don't have an account yet?</p>
+ <a href="#" id="contact-admin-link">Contact your administrator</a>
+ </li>
+ </ul>
 
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
-      <div class="nav-overlay" id="nav-overlay"></div>
-    </nav>
+ <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ </button>
+ </div>
+ <div class="nav-overlay" id="nav-overlay"></div>
+ </nav>
 
-    <main class="login-main">
-      <div class="login-wrapper">
-        <div class="login-visual">
-          <div class="login-visual-content">
-            <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
-            <h2>Welcome Back</h2>
-            <p>Sign in to continue your learning journey and access your courses.</p>
-          </div>
-        </div>
+ <main class="login-main">
+ <div class="login-wrapper">
+ <div class="login-visual">
+ <div class="login-visual-content">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo" />
+ <h2>Welcome Back</h2>
+ <p>Sign in to continue your learning journey and access your courses.</p>
+ </div>
+ </div>
 
-        <div class="login-form-panel">
-          <div class="login-form-header">
-            <h2>Sign In</h2>
-            <p>Enter your credentials to access your account</p>
-          </div>
+ <div class="login-form-panel">
+ <div class="login-form-header">
+ <h2>Sign In</h2>
+ <p>Enter your credentials to access your account</p>
+ </div>
 
-          <form id="login-form">
-            <div class="form-group">
-              <label class="form-label" for="email">Email Address</label>
-              <input
+ <form id="login-form">
+ <div class="form-group">
+ <label class="form-label" for="email">Email Address</label>
+ <input
                 type="email"
                 class="form-input"
                 id="email"
@@ -105,12 +124,12 @@
                 required
                 autocomplete="email"
               />
-            </div>
+ </div>
 
-            <div class="form-group">
-              <label class="form-label" for="password">Password</label>
-              <div style="position: relative">
-                <input
+ <div class="form-group">
+ <label class="form-label" for="password">Password</label>
+ <div style="position: relative">
+ <input
                   type="password"
                   class="form-input"
                   id="password"
@@ -120,158 +139,92 @@
                   autocomplete="current-password"
                   style="padding-right: 44px"
                 />
-                <button
+ <button
                   type="button"
                   onclick="togglePassword('password', this)"
                   style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;color:#6b7280;"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+ <circle cx="12" cy="12" r="3"/>
+ </svg>
+ </button>
+ </div>
+ </div>
 
-            <div class="login-error" id="login-error" style="display:none;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              <span id="login-error-msg"></span>
-            </div>
+ <div class="login-error" id="login-error" style="display:none;">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+ </svg>
+ <span id="login-error-msg"></span>
+ </div>
 
-            <div class="form-row">
-              <label class="form-remember">
-                <input type="checkbox" id="remember" name="remember" />
+ <div class="form-row">
+ <label class="form-remember">
+ <input type="checkbox" id="remember" name="remember" />
                 Remember me
-              </label>
-              <a href="forgot-password.html" class="form-forgot" id="forgot-password">Forgot password?</a>
-            </div>
+ </label>
+ <a href="forgot-password.html" class="form-forgot" id="forgot-password">Forgot password?</a>
+ </div>
 
-            <button type="submit" class="btn-login" id="login-submit">Sign In</button>
-          </form>
+ <button type="submit" class="btn-login" id="login-submit">Sign In</button>
+ </form>
 
-          <p class="login-footer-text" id="desktop-contact">
+ <p class="login-footer-text" id="desktop-contact">
             Don't have an account?
-            <a href="#" id="contact-admin-link-desktop">Contact your administrator</a>
-          </p>
-        </div>
-      </div>
-    </main>
+ <a href="#" id="contact-admin-link-desktop">Contact your administrator</a>
+ </p>
+ </div>
+ </div>
+ </main>
 
-    <!-- Contact Admin Modal -->
-    <div class="modal-overlay" id="modal-overlay">
-      <div class="modal">
-        <button class="modal-close" id="modal-close" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-        <div class="modal-header">
-          <div class="modal-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-          </div>
-          <h2>Request an Account</h2>
-          <p>Fill in your details and the administrator will create an account for you.</p>
-        </div>
-        <form class="modal-form" id="request-form">
-          <div class="form-group">
-            <label for="req-name">Full Name</label>
-            <input type="text" id="req-name" placeholder="e.g. Hajira Baffoe" required />
-          </div>
-          <div class="form-group">
-            <label for="req-track">Track</label>
-            <select id="req-track" required>
-              <option value="" disabled selected>Select your track</option>
-              <option value="Frontend">Frontend</option>
-              <option value="Backend">Backend</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="req-email">Email Address</label>
-            <input type="email" id="req-email" placeholder="e.g. hajira@email.com" required />
-          </div>
-          <button type="submit" class="modal-submit" id="modal-submit">Send Request</button>
-          <p class="modal-status" id="modal-status"></p>
-        </form>
-      </div>
-    </div>
+ <!-- Contact Admin Modal -->
+ <div class="modal-overlay" id="modal-overlay">
+ <div class="modal">
+ <button class="modal-close" id="modal-close" aria-label="Close modal">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+ <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+ </svg>
+ </button>
+ <div class="modal-header">
+ <div class="modal-icon">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+ </svg>
+ </div>
+ <h2>Request an Account</h2>
+ <p>Fill in your details and the administrator will create an account for you.</p>
+ </div>
+ <form class="modal-form" id="request-form">
+ <div class="form-group">
+ <label for="req-name">Full Name</label>
+ <input type="text" id="req-name" placeholder="e.g. Hajira Baffoe" required />
+ </div>
+ <div class="form-group">
+ <label for="req-track">Track</label>
+ <select id="req-track" required>
+ <option value="" disabled selected>Select your track</option>
+ <option value="Frontend">Frontend</option>
+ <option value="Backend">Backend</option>
+ </select>
+ </div>
+ <div class="form-group">
+ <label for="req-email">Email Address</label>
+ <input type="email" id="req-email" placeholder="e.g. hajira@email.com" required />
+ </div>
+ <button type="submit" class="modal-submit" id="modal-submit">Send Request</button>
+ <p class="modal-status" id="modal-status"></p>
+ </form>
+ </div>
+ </div>
 
-    <script>
-   
-      
-const BASE_URL = "https://t4g-lms-backend.fly.dev";
-      // ─────────────────────────────────────────────────────────────────
-      // SESSION HELPERS
-      // All session reads/writes go through these functions so there is
-      // exactly one place to change if the storage key ever changes.
-      // ─────────────────────────────────────────────────────────────────
-      const Session = {
-        TOKEN_KEY:    "student_token",
-        USER_KEY:     "student_user",
-        EXPIRY_KEY:   "student_token_expiry",
-        REFRESH_KEY:  "student_token_refresh",
+ <script>
+ 
+ 
+// Session handling lives in js/session.js (loaded in <head>) so there is
+      // exactly one implementation shared by every page. The head guard has
+      // already redirected any already-signed-in visitor away from this page.
 
-        save(token, user, expiresInSeconds) {
-          localStorage.setItem(this.TOKEN_KEY, token);
-          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-
-          // Store when this token expires (epoch ms) so we can check locally
-          // without a network call. Default to 7 days if server doesn't tell us.
-          const ttl = expiresInSeconds || 60 * 60 * 24 * 7; // 7 days default
-          const expiryMs = Date.now() + ttl * 1000;
-          localStorage.setItem(this.EXPIRY_KEY, String(expiryMs));
-        },
-
-        getToken()  { return localStorage.getItem(this.TOKEN_KEY); },
-        getUser()   {
-          try {
-            return JSON.parse(localStorage.getItem(this.USER_KEY));
-          } catch {
-            return null;
-          }
-        },
-
-        // Returns true if a token exists AND has not locally expired
-        isValid() {
-          const token  = this.getToken();
-          const user   = this.getUser();
-          const expiry = localStorage.getItem(this.EXPIRY_KEY);
-          if (!token || !user) return false;
-          // If we never stored an expiry (old session), treat as valid
-          // and let the server reject it if it is stale.
-          if (!expiry) return true;
-          return Date.now() < Number(expiry);
-        },
-
-        // Wipe everything — only called on explicit logout or server 401
-        clear() {
-          localStorage.removeItem(this.TOKEN_KEY);
-          localStorage.removeItem(this.USER_KEY);
-          localStorage.removeItem(this.EXPIRY_KEY);
-          localStorage.removeItem(this.REFRESH_KEY);
-        },
-
-        // Update only the user object (e.g. after password change)
-        updateUser(user) {
-          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-        },
-      };
-
-      // ─────────────────────────────────────────────────────────────────
-      // If a valid session already exists, skip the login page entirely.
-      // The user should never have to re-enter credentials unless they
-      // explicitly logged out or their token expired on the server.
-      // ─────────────────────────────────────────────────────────────────
-      if (Session.isValid()) {
-        window.location.replace("student-dashboard.html");
-      }
-
-      // ─────────────────────────────────────────────────────────────────
-      // LOGIN FORM
-      // ─────────────────────────────────────────────────────────────────
       function showLoginError(msg) {
         const box  = document.getElementById("login-error");
         const text = document.getElementById("login-error-msg");
@@ -285,9 +238,9 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
 
       function setButtonLoading(loading) {
         const btn = document.getElementById("login-submit");
-        btn.textContent        = loading ? "Signing in..." : "Sign In";
-        btn.style.opacity      = loading ? "0.7" : "1";
-        btn.style.pointerEvents = loading ? "none" : "auto";
+        btn.textContent        = loading? "Signing in...": "Sign In";
+        btn.style.opacity      = loading? "0.7": "1";
+        btn.style.pointerEvents = loading? "none": "auto";
       }
 
       document.getElementById("login-form").addEventListener("submit", async function (e) {
@@ -311,7 +264,7 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
             // ── Defensive: support both data.student and data.user ──────
             // Some FastAPI setups return the user under different keys.
             // We check both so a backend key rename never silently breaks login.
-            const user = data.student ?? data.user ?? null;
+            const user = data.student?? data.user?? null;
 
             if (!user) {
               // API returned 200 but no user object — treat as a server bug
@@ -323,10 +276,10 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
             // ── Persist session ─────────────────────────────────────────
             // expires_in comes from your FastAPI JWT settings (seconds).
             // If the server does not return it, Session.save defaults to 7 days.
-            Session.save(data.access_token, user, data.expires_in ?? null);
+            Session.save(data.access_token, user);
 
             // ── Redirect ────────────────────────────────────────────────
-            window.location.replace("student-dashboard.html");
+            window.location.replace(Session.lastPage());
 
           } else {
             // Map common HTTP status codes to friendly messages
@@ -336,9 +289,7 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
               404: "No account found with that email address.",
               429: "Too many attempts. Please wait a moment and try again.",
             };
-            const msg = statusMessages[response.status]
-              ?? data.detail
-              ?? "Login failed. Please check your credentials.";
+            const msg = statusMessages[response.status]?? data.detail?? "Login failed. Please check your credentials.";
             showLoginError(msg);
             setButtonLoading(false);
           }
@@ -398,7 +349,7 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
       }
 
       navToggle.addEventListener("click", () => {
-        navLinks.classList.contains("active") ? closeNav() : openNav();
+        navLinks.classList.contains("active")? closeNav(): openNav();
       });
       navOverlay.addEventListener("click", closeNav);
       navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", closeNav));
@@ -462,7 +413,7 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
             });
 
             if (res.ok) {
-              modalStatus.textContent = "✓ Request sent! The admin will be in touch.";
+              modalStatus.textContent = " Request sent! The admin will be in touch.";
               modalStatus.classList.add("success");
               requestForm.reset();
               setTimeout(closeModal, 2500);
@@ -470,7 +421,7 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
               throw new Error();
             }
           } catch {
-            modalStatus.textContent = "✗ Something went wrong. Please try again.";
+            modalStatus.textContent = " Something went wrong. Please try again.";
             modalStatus.classList.add("error");
           } finally {
             modalSubmit.disabled    = false;
@@ -478,6 +429,6 @@ const BASE_URL = "https://t4g-lms-backend.fly.dev";
           }
         });
       }
-    </script>
-  </body>
+ </script>
+ </body>
 </html>

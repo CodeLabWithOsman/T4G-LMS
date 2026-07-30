@@ -13,132 +13,153 @@
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 	<link rel="stylesheet" href="css/style.css">
+ <!-- T4G-AUTH-GUARD: runs before first paint. Do not move below the stylesheets. -->
+ <script>
+      document.documentElement.className += ' auth-pending';
+      window.__T4G_ROLE__ = 'staff';
+      // Safety net: never leave the page permanently hidden.
+      setTimeout(function () {
+        document.documentElement.classList.remove('auth-pending');
+      }, 4000);
+ </script>
+ <noscript>
+ <style>
+        html.auth-pending body { visibility: visible!important; }
+ </style>
+ </noscript>
+ <script src="js/session.js"></script>
+ <script>
+      if (window.Session) {
+        Session.redirectIfAuthenticated();
+      } else {
+        document.documentElement.classList.remove('auth-pending');
+      }
+ </script>
 </head>
 <body class="login-page">
 
 	
 	
 	<nav class="navbar" id="navbar">
-		<div class="navbar-inner">
+ <div class="navbar-inner">
 
-			<!-- Logo -->
-			<a href="index.html" class="navbar-logo" id="logo-link">
-				<img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
-				<span class="logo-text">Tech4Girls</span>
-			</a>
+ <!-- Logo -->
+ <a href="index.html" class="navbar-logo" id="logo-link">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
+ <span class="logo-text">Tech4Girls</span>
+ </a>
 
-			<!-- Desktop nav links (also becomes the sidebar on mobile) -->
-			<ul class="navbar-links" id="navbar-links">
-					<a href="index.html" class="navbar-signin-btn" id="nav-signin">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ <!-- Desktop nav links (also becomes the sidebar on mobile) -->
+ <ul class="navbar-links" id="navbar-links">
+ <a href="index.html" class="navbar-signin-btn" id="nav-signin">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-							<polyline points="10 17 15 12 10 7" />
-							<line x1="15" y1="12" x2="3" y2="12" />
-						</svg>
+ <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+ <polyline points="10 17 15 12 10 7" />
+ <line x1="15" y1="12" x2="3" y2="12" />
+ </svg>
 						Sign In
-					</a>
-				</li>
-			</ul>
+ </a>
+ </ul>
 
-			<!-- Hamburger (hidden on desktop) -->
-			<button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-				<span class="hamburger-line"></span>
-			</button>
+ <!-- Hamburger (hidden on desktop) -->
+ <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ <span class="hamburger-line"></span>
+ </button>
 
-		</div>
+ </div>
 
-		<!-- Dark overlay behind sidebar -->
-		<div class="nav-overlay" id="nav-overlay"></div>
+ <!-- Dark overlay behind sidebar -->
+ <div class="nav-overlay" id="nav-overlay"></div>
 	</nav>
 
 
 
 	<main class="login-main">
-		<div class="login-wrapper">
-			<!-- Left: Visual panel -->
-			<div class="login-visual">
-				<div class="login-visual-content">
-					<img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
-					<h2>Welcome Back, Staff</h2>
-					<p>Sign in to manage courses, track student progress, and access your teaching tools.</p>
-				</div>
-			</div>
+ <div class="login-wrapper">
+ <!-- Left: Visual panel -->
+ <div class="login-visual">
+ <div class="login-visual-content">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
+ <h2>Welcome Back, Staff</h2>
+ <p>Sign in to manage courses, track student progress, and access your teaching tools.</p>
+ </div>
+ </div>
 
-			<div class="login-form-panel">
-				<div class="login-form-header">
-					<h2>Staff Sign In</h2>
-					<p>Enter your credentials to access your staff account</p>
-				</div>
+ <div class="login-form-panel">
+ <div class="login-form-header">
+ <h2>Staff Sign In</h2>
+ <p>Enter your credentials to access your staff account</p>
+ </div>
 
-				<form id="login-form" action="#" method="POST">
-					<div class="form-group">
-						<label class="form-label" for="email">Email Address</label>
-						<input type="email" class="form-input" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-					</div>
+ <form id="login-form" action="#" method="POST">
+ <div class="form-group">
+ <label class="form-label" for="email">Email Address</label>
+ <input type="email" class="form-input" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+ </div>
 
-					<div class="form-group">
-						<label class="form-label" for="password">Password</label>
-						<div style="position: relative;">
-							<input type="password" class="form-input" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password" style="padding-right: 44px;">
-							<button type="button" onclick="togglePassword('password', this)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; padding:4px; color:#6b7280;">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-									<circle cx="12" cy="12" r="3"/>
-								</svg>
-							</button>
-						</div>
-					</div>
+ <div class="form-group">
+ <label class="form-label" for="password">Password</label>
+ <div style="position: relative;">
+ <input type="password" class="form-input" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password" style="padding-right: 44px;">
+ <button type="button" onclick="togglePassword('password', this)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; padding:4px; color:#6b7280;">
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+ <circle cx="12" cy="12" r="3"/>
+ </svg>
+ </button>
+ </div>
+ </div>
 
-					<div class="form-row">
-						<label class="form-remember">
-							<input type="checkbox" id="remember" name="remember">
+ <div class="form-row">
+ <label class="form-remember">
+ <input type="checkbox" id="remember" name="remember">
 							Remember me
-						</label>
-						<a href="staff-forgot-password.html" class="form-forgot" id="forgot-password">Forgot password?</a>
-					</div>
+ </label>
+ <a href="staff-forgot-password.html" class="form-forgot" id="forgot-password">Forgot password?</a>
+ </div>
 
-					<button type="submit" class="btn-login" id="login-submit">
+ <button type="submit" class="btn-login" id="login-submit">
 						Sign In
-					</button>
-				</form>
+ </button>
+ </form>
 
-				<p class="login-footer-text">
+ <p class="login-footer-text">
 					Don't have an account? <a href="#">Contact your administrator</a>
-				</p>
-			</div>
-		</div>
+ </p>
+ </div>
+ </div>
 	</main>
 	<footer class="footer" id="footer">
-		<div class="footer-inner">
-			<div class="footer-top">
-				<div class="footer-brand">
-					<img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
-					<div class="divider"></div>
-					<span>Learning Management System</span>
-				</div>
-				<div class="footer-links">
-					<a href="index.html">Home</a>
-					<a href="login.html">Sign In</a>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="footer-partner">
-					<img src="img/hacsa logo.jpg" alt="HACSA Logo">
-					<span>HACSA Foundation</span>
-				</div>
-				<p class="footer-copy">&copy; 2026 Tech4Girls by HACSA Foundation. All rights reserved.</p>
-			</div>
-		</div>
+ <div class="footer-inner">
+ <div class="footer-top">
+ <div class="footer-brand">
+ <img src="img/Tech4Girls logo.png" alt="Tech4Girls Logo">
+ <div class="divider"></div>
+ <span>Learning Management System</span>
+ </div>
+ <div class="footer-links">
+ <a href="index.html">Home</a>
+ <a href="index.html">Sign In</a>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <div class="footer-partner">
+ <img src="img/hacsa logo.jpg" alt="HACSA Logo">
+ <span>HACSA Foundation</span>
+ </div>
+ <p class="footer-copy">&copy; 2026 Tech4Girls by HACSA Foundation. All rights reserved.</p>
+ </div>
+ </div>
 	</footer>
 
 
-</body>
+
 	<script>
 		function togglePassword(inputId, btn) {
 			const input = document.getElementById(inputId);
@@ -150,26 +171,38 @@
 				btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 			}
 		}
-		
+ 
 		const navbar = document.getElementById('navbar');
 		window.addEventListener('scroll', () => {
 			navbar.classList.toggle('scrolled', window.scrollY > 10);
 		});
 
-		
+ 
 		const navToggle = document.getElementById('nav-toggle');
 		const navLinks = document.getElementById('navbar-links');
 		navToggle.addEventListener('click', () => {
 			navLinks.classList.toggle('active');
 		});
 
-		
+ 
 		navLinks.querySelectorAll('a').forEach(link => {
 			link.addEventListener('click', () => {
 				navLinks.classList.remove('active');
 			});
 		});
-		const BASE_URL = "https://t4g-lms-backend.fly.dev";
+		// BASE_URL and Session come from js/session.js.
+		function showLoginError(message) {
+			let box = document.getElementById('login-error');
+			if (!box) {
+				box = document.createElement('p');
+				box.id = 'login-error';
+				box.className = 'login-error';
+				const form = document.getElementById('login-form');
+				form.parentNode.insertBefore(box, form);
+			}
+			box.textContent = message;
+			box.style.display = 'flex';
+		}
 
 document.getElementById('login-form').addEventListener('submit', async function(e) {
     e.preventDefault()
@@ -192,25 +225,24 @@ document.getElementById('login-form').addEventListener('submit', async function(
         const data = await response.json()
 
         if (response.ok) {
-            localStorage.setItem('staff_token', data.access_token)
-            localStorage.setItem('staff_user', JSON.stringify(data.staff))
-            window.location.href = 'staff-dashboard.html'
+            Session.save(data.access_token, data.staff)
+            window.location.replace(Session.lastPage())
         } else {
-            alert(data.detail || 'Login failed. Please check your credentials.')
+            showLoginError(data.detail || 'Login failed. Please check your credentials.')
             btn.textContent = 'Sign In'
             btn.style.opacity = '1'
             btn.style.pointerEvents = 'auto'
         }
 
     } catch (error) {
-        alert('Could not connect to server. Make sure your backend is running.')
+        showLoginError('Could not reach the server. Please check your connection and try again.')
         btn.textContent = 'Sign In'
         btn.style.opacity = '1'
         btn.style.pointerEvents = 'auto'
     }
 })
 
-		
+ 
 	</script>
 </body>
 </html>
